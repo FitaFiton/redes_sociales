@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './PostList_styles.css';
 import axios from 'axios'
 import Tabla from "./tabla";
 import {Button, TextField} from "@material-ui/core";
@@ -64,11 +65,13 @@ export class PostList extends Component {
 
         return(
 
-            <div>
-                <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
-                    <form  noValidate autoComplete="off">
-                <TextField id="tf_title" label="Title" variant="outlined" onChange={this.onChangeTextField}/>
-                <TextField id="tf_content" label="Content" variant="outlined" onChange={this.onChangeTextField}/>
+            <div className="post-list-box">
+                <div className = "post-list-atributes">
+                    <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
+                </div>
+                <form  noValidate autoComplete="off">
+                    <TextField id="tf_title" label="Title" variant="outlined" onChange={this.onChangeTextField}/>
+                    <TextField id="tf_content" label="Content" variant="outlined" onChange={this.onChangeTextField}/>
                 </form>
                 <Button variant="contained" color="primary" onClick={() => {
                     //Enviar los datos al servidor
@@ -82,12 +85,9 @@ export class PostList extends Component {
                         console.log(response);
                         this.setState({
                             posts: [...this.state.posts, response.data],
-                        });
-                    });
-                }}>
-
-                Publicar
-                </Button>
+                         });
+                       });
+                }}>Publicar</Button>
             </div>
     );
     }

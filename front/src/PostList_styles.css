@@ -1,0 +1,11 @@
+.post-list-box{
+    background-color: cornsilk;
+    /* padding-left: 13%;
+    padding-right: 13%; */
+    width: 80%;
+    margin: 0 auto;
+}
+
+.post-list-atributes{
+    padding-bottom: 20px;
+}

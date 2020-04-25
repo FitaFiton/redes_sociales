@@ -38,7 +38,7 @@ class App extends Component {
 
             <BrowserRouter >
             <Router history={history}>
-                <NavBar logged_in={localStorage.getItem("username") !== null}/>
+                <NavBar/>
                 <Switch>
                     <Route path="/register" on_register={true} component={RegisterForm}/>
                     <Route path="/registerPleasures" component={RegisterFormPleasures}/>

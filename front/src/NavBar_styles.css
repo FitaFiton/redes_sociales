@@ -1,0 +1,52 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+
+.navbar-area{
+    width: 100%;
+    
+}
+.search-box{
+    width: 100px;
+
+}
+
+.profile-dropdown{
+    color: gray; 
+
+}
+
+.icon-profile{
+    margin-top: 3px;
+    color: gray;
+}
+
+.logout-icon{
+    color: gray;
+    width: auto;
+}
+
+.navbar-box-1{
+    width: 100%;
+}
+
+.navbar-box-2{
+    
+    justify-content: flex-end;
+    
+}
+
+.navbar-box-3{
+    width: 100%;
+}
+
+
+.pinta-caja-1{
+    background-color: orange;
+    width: 50px;
+}
+
+.pinta-caja-2{
+    background-color: blueviolet;
+    
+}
+

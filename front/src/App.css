@@ -1,0 +1,124 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.register-box-background {
+    background: #CDCDCD;
+    display: flex;
+    width: 50%;
+    height:75%;
+    margin:auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+}
+
+.register-box-background-pleasures {
+    background: #CDCDCD;
+    display: flex;
+    width: 50%;
+    height:55%;
+    margin:auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+}
+
+
+.register-box{
+    color: white;
+    font-size: 20px;
+    margin-top: 75px;
+    margin-left: 100px;
+    text-align: justify;
+    font-size: large;
+    font-weight: bolder;
+    width: 73%;
+    height:60%;
+}
+
+.register-box-options{
+    display: grid;
+}
+
+.chat-box-white {
+    background: white;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+}
+
+.register-inputs {
+    margin-top: 12px;
+    margin-left: 5px;
+    display:flex;
+    background: white;
+    border-radius: 7px;
+}
+
+.register-box-inputs-same-row {
+    margin-top: 12px;
+    display:flex;
+
+}
+
+.register-button{
+    margin-top: 17px;
+    text-align: right;
+}
+
+.register-description-text{
+    margin-top: 2px;
+    text-align: center;
+}
+.register-inputs-middle-width {
+    background: white;
+    margin-left: 5px;
+    border-radius: 7px;
+    width: 100%;
+}
+
+
+.register-pleasures-box{
+   display: grid;
+}
+
+.register-pleasures-checkbox{
+   text-align: center;
+}

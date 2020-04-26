@@ -59,9 +59,6 @@ export class NavBar extends Component {
                                 </Nav>
                                 <Nav className=" navbar-box-2">
                                     <NavDropdown title={<i className="far fa-user fa-sg icon-profile profile-dropdown"></i>} id="basic-nav-dropdown">
-                                    
-                                        <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                                        <NavDropdown.Item href="/register">Register</NavDropdown.Item>
                                         <NavDropdown.Item href="/">Settings</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                         <NavDropdown.Item href="/">View profile</NavDropdown.Item>
@@ -72,7 +69,24 @@ export class NavBar extends Component {
                             
                                 </Nav>
                             </Navbar.Collapse>
-                         : '' }
+                            : 
+                            <Navbar.Collapse id="responsive-navbar-nav" > 
+                            <Nav className="navbar-box-1">
+                                <Nav.Link href="/">Home</Nav.Link>
+                                <Nav.Link href="/">About us</Nav.Link>
+                            </Nav>
+                            <Nav className=" navbar-box-2">
+                                <NavDropdown title={<i className="far fa-user fa-sg icon-profile profile-dropdown"></i>} id="basic-nav-dropdown">
+                                
+                                    <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                                    <NavDropdown.Item href="/register">Register</NavDropdown.Item>
+                                    <NavDropdown.Item href="/">Settings</NavDropdown.Item>
+                                </NavDropdown>
+                                <Nav.Link className="logout-icon" onClick={() => this.logout()}> <i className="fas fa-running fa-lg "></i> </Nav.Link>
+                        
+                            </Nav>
+                        </Navbar.Collapse>
+                        }
             </Navbar>
 
     

@@ -11,11 +11,17 @@
 }
 
 .profile-dropdown{
-    color: gray; 
+    color: white;
+    left: 0;
 
 }
 
 .icon-profile{
+    margin-top: 3px;
+    color: white;
+}
+
+.icon-profile-gray{
     margin-top: 3px;
     color: gray;
 }

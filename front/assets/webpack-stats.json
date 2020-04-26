@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main.js","path":"D:\\4_CURSO\\Redes Sociales\\WMW\\redes_sociales\\front\\assets\\webpack_bundles\\main.js"}]}}
+{"status":"done","chunks":{"main":[{"name":"main.js","path":"D:\\4_CURSO\\Redes Sociales\\WMW\\redes_sociales\\front\\assets\\webpack_bundles\\main.js"}]},"error":"unknown-error","message":"[tsl] ERROR in D:\\4_CURSO\\Redes Sociales\\WMW\\redes_sociales\\front\\src\\NavBar.tsx(96,37)\r\n      TS17002: Expected corresponding JSX closing tag for 'NavDropdown'."}

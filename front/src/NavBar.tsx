@@ -69,7 +69,7 @@ export class NavBar extends Component {
                             
                                 </Nav>
                             </Navbar.Collapse>
-                            : 
+                            :
                             <Navbar.Collapse id="responsive-navbar-nav" > 
                             <Nav className="navbar-box-1">
                                 <Nav.Link href="/">Home</Nav.Link>
@@ -81,8 +81,6 @@ export class NavBar extends Component {
                                     <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                                     <NavDropdown.Item href="/register">Register</NavDropdown.Item>
                                 </NavDropdown>
-                                <Nav.Link className="logout-icon" onClick={() => this.logout()}> <i className="fas fa-running fa-lg "></i> </Nav.Link>
-                        
                             </Nav>
                         </Navbar.Collapse>
                         }

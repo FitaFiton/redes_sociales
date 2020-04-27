@@ -12,6 +12,7 @@ import {BrowserRouter, Router, Route, Switch, useHistory} from "react-router-dom
 import {PostList} from "./PostList";
 import {Chat} from "./Chat"
 import history from './history';
+import { MyProfile } from './MyProfile';
 
 class App extends Component {
 
@@ -43,6 +44,7 @@ class App extends Component {
                     <Route path="/register" on_register={true} component={RegisterForm}/>
                     <Route path="/registerPleasures" component={RegisterFormPleasures}/>
                     <Route path="/login" component={LoginForm}/>
+                    <Route path="/myprofile" component={MyProfile}/>
                     <Route path="/chat" component={Chat}/>
                     <Route path="/" component={PostList}/>
                 </Switch>

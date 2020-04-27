@@ -13,6 +13,14 @@ class UserViewSet(ModelViewSet):
     permission_classes = (AllowAny,)
     #Post.objects.filter(title='hola')
 
+    def get_queryset(self):
+        print(self.request.query_params.get('filterByUser', None))
+        mode = self.request.query_params.get('filterByUser', None)
+        if mode:
+            return User.objects.filter(username=self.request.user)
+        else:
+            return User.objects.all()
+
     def get_serializer_class(self, *args, **kwargs):
         return UserRegistrationSerializer
 

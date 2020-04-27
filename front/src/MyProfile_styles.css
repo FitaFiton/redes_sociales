@@ -1,0 +1,47 @@
+
+.rounded-border{
+    border-radius: 15px;
+}
+
+.box-1{
+    background-color: cornsilk;
+    height: 180px;
+    margin-top: 20px;
+    
+}
+
+.box-2-3{
+    height: 100%;
+    
+}
+
+.box-2{
+    background-color: aquamarine;
+    
+}
+
+.box-3{
+    background-color: gray;
+    margin-left: 20px; 
+    
+}
+
+.box-4{
+    background-color: orange;
+}
+
+.post-list-atributes{
+    padding-bottom: 20px;
+}
+
+.separator{
+    margin-bottom: 20px;
+}
+
+.hacia-derecha{
+    justify-content: left;
+}
+
+.publicar-button-col{
+    padding-right: 20px;
+}

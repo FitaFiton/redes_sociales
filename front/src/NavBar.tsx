@@ -62,7 +62,7 @@ export class NavBar extends Component {
                                     <Nav.Link href="/Chat/">Chat</Nav.Link>
                                 </Nav>
                                 <Nav className=" navbar-box-2">
-                                    <SplitButton href="/" variant="secondary" alignRight title={<i className="far fa-user fa-sg icon-profile profile-dropdown"></i>} id="dropdown-menu-align-right">
+                                    <SplitButton href="/myprofile" variant="secondary" alignRight title={<i className="far fa-user fa-sg icon-profile profile-dropdown"></i>} id="dropdown-menu-align-right">
                                         <NavDropdown.Item href="/">Settings</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                         <NavDropdown.Item  onClick={() => this.logout()}>Log out</NavDropdown.Item>

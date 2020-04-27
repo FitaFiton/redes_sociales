@@ -32,7 +32,7 @@ class UserRegistrationSerializer(HyperlinkedModelSerializer):
 class UserSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['id']
+        fields = ['id', 'username']
 
 
 class PostSerializer(HyperlinkedModelSerializer):

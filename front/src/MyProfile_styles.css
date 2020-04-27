@@ -45,3 +45,29 @@
 .publicar-button-col{
     padding-right: 20px;
 }
+
+
+.post-list-accordion{
+    margin: 10px;
+}
+
+.post-imput{
+    justify-content: right;
+    margin:10px;
+}
+
+.post-title-imput{
+    width: 24%;
+}
+
+.post-imput-label{
+    text-align: right;
+}
+
+.post-content-imput{
+    width: 27%;
+}
+
+.post-button-container{
+    background-color: blue;
+}

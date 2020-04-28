@@ -9,7 +9,7 @@ import NavBar from "./NavBar";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import { Row, Container, Col, Card, Accordion, Form,Button} from 'react-bootstrap';
+import { Row, Container, Col, Card, Accordion, Form,Button, Image} from 'react-bootstrap';
 
 let config = {
     headers: {
@@ -46,22 +46,22 @@ export class MyProfile extends Component {
         });
     };
 
-    // onDeletePost = (post_id: number) => {
+    onDeletePost = (post_id: number) => {
 
-    //     axios.delete('http://127.0.0.1:8000/api/post/' + post_id + '/', config).then(response => {
-    //         console.log(response);
+        axios.delete('http://127.0.0.1:8000/api/post/' + post_id + '/', config).then(response => {
+            console.log(response);
 
-    //         if (response.status === 200) {
-    //             const new_posts = this.state.posts.filter((post: any) => {
-    //                 return post.id !== post_id;
-    //             });
+            if (response.status === 200) {
+                const new_posts = this.state.posts.filter((post: any) => {
+                    return post.id !== post_id;
+                });
 
-    //             this.setState({
-    //                 posts: new_posts
-    //             });
-    //         }
-    //     });
-    // };
+                this.setState({
+                    posts: new_posts
+                });
+            }
+        });
+    };
 
     render() {
 
@@ -76,7 +76,11 @@ export class MyProfile extends Component {
                 <Container fluid="md" className="rounded-border">
                     <Row >
 
-                        <Col className="box-4 rounded-border" md={{span: 9, offset: 3 }}>
+                        <Col  className="profile-image-box rounded-border">
+                            <Image className="image-exammple" src="holder.js/171x180" roundedCircle />
+                        </Col>
+
+                        <Col className="box-4 rounded-border" xs={9}>
                             <Form className="post-imput">
                                 <Col md={{ offset: 9}} >
                                     <Form.Group  className="post-title-imput" controlId="postTitle"  >
@@ -141,11 +145,17 @@ export class MyProfile extends Component {
             
                     <Row className="box-2-3" >
                         <Col className="box-2 rounded-border">1 of 3</Col>
+
                         <Col xs={9} className="box-3 rounded-border">
+
+                            <div className = "post-list-atributes">
+                                <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
+                            </div>
+
+
                             <Accordion className="post-list-accordion">
                                 <Card>
-                                    <Accordion.Toggle as={Card.Header} eventKey="0">
-                                    Titulo post 1
+                                    <Accordion.Toggle data={this.state.posts} as={Card.Header} eventKey="0">
                                     </Accordion.Toggle>
                                     <Accordion.Collapse eventKey="0">
                                     <Card.Body>Contenido post 1</Card.Body>

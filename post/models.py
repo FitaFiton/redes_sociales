@@ -14,6 +14,9 @@ class Post(models.Model):
         return f'{ {self.pk} } - {self.title}: {self.content} - {self.author}'
 
 
+
+#abstrac user
+
 class Profile(models.Model):
     music = models.BooleanField()  # Como mucho 30 caracteres y que puede estar en blanco
     literature = models.BooleanField()  # No tiene maximo de caracteres

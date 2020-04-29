@@ -33,13 +33,15 @@ class App extends Component {
         console.log("REGISTER");
     };
 
+
     render() {
+        console.log("Inicio App")
 
         return(
 
             <BrowserRouter >
-            <Router history={history}>
-                <NavBar/>
+            <Router history={history} >
+                <NavBar logged_in={localStorage.getItem("session") !== null}/>
                 <Switch>
                     <Route path="/register" on_register={true} component={RegisterForm}/>
                     <Route path="/registerPleasures" component={RegisterFormPleasures}/>

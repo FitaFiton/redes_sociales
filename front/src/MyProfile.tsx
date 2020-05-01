@@ -153,10 +153,10 @@ export class MyProfile extends Component {
                             {/* <div className = "post-list-atributes">
                                 <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
                             </div> */}
-                            <div className="post-list-box" >
-                                <PostCard  data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
+                            
+                            <PostCard  data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
                
-                            </div>
+                            
                         </Col>
                     </Row>
 

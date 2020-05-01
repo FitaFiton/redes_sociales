@@ -4,6 +4,7 @@ import './App.css';
 import './PostList_styles.css';
 import axios from 'axios'
 import Tabla from "./tabla";
+import PostCard from "./PostCardView";
 import {Button, TextField} from "@material-ui/core";
 import NavBar from "./NavBar";
 import LoginForm from "./LoginForm";
@@ -68,8 +69,7 @@ export class PostList extends Component {
 
             <Container className="post-list-box">
                 <form >
-                    <Tabla className = "post-list-atributes"  data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
-                
+                    <PostCard data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
                 </form>
                 
                 <form  noValidate autoComplete="off">

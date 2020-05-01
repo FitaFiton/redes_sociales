@@ -2,22 +2,22 @@ import React from "react";
 import {Table, TableHead, TableRow, TableCell, TableBody, Button} from "@material-ui/core";
 import axios from 'axios'
 
-import {Card, Accordion} from 'react-bootstrap';
-
-import './MyProfile_styles.css';
+import {Card, Accordion, Nav} from 'react-bootstrap';
 
 
+import './tablaPosts.css';
 
 const THead = (props: any) => {
 
     return (
-        <TableHead>
+        <TableHead >
             <TableRow>
                 <TableCell>Titulo</TableCell>
                 <TableCell>Contenido</TableCell>
+                
                 <TableCell>Fecha</TableCell>
-                <TableCell>Autor</TableCell>
-                <TableCell>Borrar</TableCell>
+                
+                <TableCell>Usuario</TableCell>
             </TableRow>
         </TableHead>
     );
@@ -78,13 +78,80 @@ const TBody = (props: any) => {
         );
     });
 
-
     return (
         <TableBody>
             {posts}
         </TableBody>
     );
 };
+
+// const SingleTBody = (props: any) => {
+//     let { post, on_click_delete } = props;
+
+//     post =post;
+//     return (
+//         <TableRow key={post.id} >
+//             <TableCell>{post.content}</TableCell>
+//             <TableCell>{post.date}</TableCell>
+            
+//             <TableCell>
+//                 <Button variant="contained" color="secondary" onClick={() => {on_click_delete(post.id)}}>
+//                         BORRAR
+//                 </Button>
+//             </TableCell>
+//         </TableRow>
+//     );
+// };
+
+// const TBodyNew = (props: any) => {
+//     let { posts, on_click_delete, number } = props;
+
+//     posts = posts.map((post: any, i: number) => {
+//         return (
+            
+
+//             <Accordion className="post-list-accordion" key={post.id}>
+//                 <Card>
+//                     <Accordion.Toggle as={Card.Header} eventKey="0" className="post-title-box text-center"> 
+//                         <Nav  className="post-title-box-content justify-content-end">
+//                             <Nav.Item>
+                                
+//                                 <Nav.Link disabled>{post.title}</Nav.Link>
+//                             </Nav.Item>
+//                             |
+//                             <Nav.Item>
+//                                 <Nav.Link href="/myprofile">{post.author.username}</Nav.Link>
+//                             </Nav.Item>
+//                         </Nav>
+                            
+//                     </Accordion.Toggle>
+//                     <Accordion.Collapse eventKey="0">
+
+
+//                         <Card.Body className="table-content-box">
+//                             <div >
+//                                 <THead />
+//                                 <SingleTBody  post={posts[i]} on_click_delete={on_click_delete}/>   
+//                             </div>
+                             
+//                         </Card.Body>
+
+
+                        
+
+//                     </Accordion.Collapse>
+//                 </Card>
+//             </Accordion>
+//         );
+//     });
+
+
+//     return (
+//         <TableBody>
+//             {posts}
+//         </TableBody>
+//     );
+// };
 
 
 const Tabla = (props :any) => {
@@ -97,6 +164,7 @@ const Tabla = (props :any) => {
         <Table>
             <THead/>
             <TBody posts={data} on_click_delete={on_click_delete} number={number}/>
+            {/* <TBodyNew posts={data} on_click_delete={on_click_delete} number={number}/> */}
         </Table>
     );
 };

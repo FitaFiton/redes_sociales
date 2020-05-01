@@ -1,0 +1,34 @@
+.post-title-box{
+    height: auto;
+    vertical-align: middle;
+    
+}
+.post-title-box-content{
+    padding-bottom: 5px;
+    background-color: thistle;
+}
+
+
+
+.post-list-accordion{
+}
+
+.table-content-box{
+    background-color: blue;
+}
+
+.table-content-box{
+    background-color: blue;
+    width: 10%;
+}
+
+.post-list-box-content-labels{
+    background-color: orange;
+    width: 100%;
+    
+}
+
+.post-list-box-content-posted{
+    background-color: yellow;
+    
+}

@@ -9,6 +9,7 @@ import NavBar from "./NavBar";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import { Container } from 'react-bootstrap';
 
 let config = {
     headers: {
@@ -65,10 +66,12 @@ export class PostList extends Component {
 
         return(
 
-            <div className="post-list-box">
-                <div className = "post-list-atributes">
-                    <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
-                </div>
+            <Container className="post-list-box">
+                <form >
+                    <Tabla className = "post-list-atributes"  data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
+                
+                </form>
+                
                 <form  noValidate autoComplete="off">
                     <TextField id="tf_title" label="Title" variant="outlined" onChange={this.onChangeTextField}/>
                     <TextField id="tf_content" label="Content" variant="outlined" onChange={this.onChangeTextField}/>
@@ -88,7 +91,7 @@ export class PostList extends Component {
                          });
                        });
                 }}>Publicar</Button>
-            </div>
+            </Container>
     );
     }
 }

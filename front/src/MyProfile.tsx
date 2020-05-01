@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
-import './App.css';
 import './MyProfile_styles.css';
 import axios from 'axios'
+
 import Tabla from "./tabla";
+import PostCard from "./PostCardView"
+
 import {TextField} from "@material-ui/core";
 import NavBar from "./NavBar";
 import LoginForm from "./LoginForm";
@@ -148,12 +150,13 @@ export class MyProfile extends Component {
 
                         <Col xs={9} className="box-3 rounded-border">
 
-                            <div className = "post-list-atributes">
+                            {/* <div className = "post-list-atributes">
                                 <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
+                            </div> */}
+                            <div className="post-list-box" >
+                                <PostCard  data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
+               
                             </div>
-
-
-                            
                         </Col>
                     </Row>
 

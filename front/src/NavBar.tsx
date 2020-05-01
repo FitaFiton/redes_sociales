@@ -66,7 +66,7 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
         let {logged_in} = this.props;
 
         return(
-            <Navbar collapseOnSelect bg="light" expand="lg"  >
+            <Navbar sticky="top" collapseOnSelect bg="light" expand="lg"  >
                 <Navbar.Brand href="/" >{logged_in ? 'Hola, ' + localStorage.getItem('username') : 'Anónimo'}</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                         {

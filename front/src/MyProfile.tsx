@@ -154,7 +154,8 @@ export class MyProfile extends Component {
                                 <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
                             </div> */}
                             
-                            <PostCard  data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
+                                <PostCard  data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
+                            
                
                             
                         </Col>

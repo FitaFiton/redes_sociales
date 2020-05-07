@@ -13,6 +13,7 @@ import {PostList} from "./PostList";
 import {Chat} from "./Chat"
 import history from './history';
 import { MyProfile } from './MyProfile';
+import { Home } from './Home';
 
 class App extends Component {
 
@@ -48,6 +49,7 @@ class App extends Component {
                     <Route path="/login" component={LoginForm}/>
                     <Route path="/myprofile" component={MyProfile}/>
                     <Route path="/chat" component={Chat}/>
+                    <Route path="/home" component={Home}/>
                     <Route path="/" component={PostList}/>
                 </Switch>
              </Router>

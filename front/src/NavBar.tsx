@@ -67,14 +67,15 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
 
         return(
             <Navbar sticky="top" collapseOnSelect bg="light" expand="lg"  >
-                <Navbar.Brand href="/" >{logged_in ? 'Hola, ' + localStorage.getItem('username') : 'Anónimo'}</Navbar.Brand>
+                <Navbar.Brand href="/home" >{logged_in ? 'Hola, ' + localStorage.getItem('username') : 'Anónimo'}</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                         {
                             logged_in ? 
                             <Navbar.Collapse id="responsive-navbar-nav" > 
                                 <Nav className="navbar-box-1">
-                                    <Nav.Link href="/">Home</Nav.Link>
+                                    <Nav.Link href="/home">Home</Nav.Link>
                                     <Nav.Link href="/">Posts</Nav.Link>
+                        
                                     <Nav.Link href="/Chat/">Chat</Nav.Link>
                                 </Nav>
                                 <Nav className=" navbar-box-2">
@@ -90,7 +91,7 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
                             :
                             <Navbar.Collapse id="responsive-navbar-nav" > 
                                 <Nav className="navbar-box-1">
-                                    <Nav.Link href="/">Home</Nav.Link>
+                                    <Nav.Link href="/home">Home</Nav.Link>
                                     <Nav.Link href="/">About us</Nav.Link>
                                 </Nav>
                                 <Nav className=" navbar-box-2">

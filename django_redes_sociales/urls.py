@@ -13,8 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
-from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path, include
@@ -23,14 +23,17 @@ from rest_framework import routers
 from post.api import PostViewSet, UserViewSet, ProfileViewSet
 from rest_framework_jwt.views import obtain_jwt_token
 
+from post.views import use_twitter
+
 router = routers.DefaultRouter()
 router.register(r'post', PostViewSet, basename='Post')
 router.register(r'profile', ProfileViewSet, basename='Profile')
 router.register(r'user', UserViewSet)
 
-urlpatterns = [
+urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
     path('admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
     path('auth/', obtain_jwt_token), #sesion
+    path('twitter/', use_twitter),
     url(r'', TemplateView.as_view(template_name='index.html'))
 ]

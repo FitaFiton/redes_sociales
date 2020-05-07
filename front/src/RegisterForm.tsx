@@ -46,6 +46,8 @@ class RegisterForm extends Component<RegisterFormProps, RegisterFormState> {
             last_name: '',
             password: '',
         }
+        console.log(this.state);
+        console.log("EMPIEZA REGISTER");
 
     }
 
@@ -87,13 +89,14 @@ class RegisterForm extends Component<RegisterFormProps, RegisterFormState> {
         event.preventDefault();
         console.log(this.state);
 
-
         if (this.confirmPassword === this.state.password){
             axios.post('http://127.0.0.1:8000/api/user/', this.state).then(r => {
             console.log(r);
+
             axios.post('http://127.0.0.1:8000/auth/', this.state).then(r => {
                 console.log(r);
                 localStorage.setItem('session', r.data.token);
+                localStorage.setItem('user_id', r.data.user.id);
                 localStorage.setItem('username', r.data.user.username);
                 axios.defaults.headers.common['Authorization'] = `JWT ${localStorage.getItem("session")}`;
 
@@ -101,15 +104,15 @@ class RegisterForm extends Component<RegisterFormProps, RegisterFormState> {
                     config.headers.Authorization = `JWT ${r.data.token}`;
                     return config;
                 });
-                history.push('/registerPleasures');
+                    history.push('/registerProfile');
                 });
 
             });
 
 
         }
-        console.log("REGISTER");
-        history.push('/registerPleasures');
+        //console.log("REGISTER");
+        //history.push('/registerPleasures');
         //this.props.history.push('/register/pleasures');
         //this.render_pleasures();
         //fetch('http://127.0.0.1:8000/auth/', {
@@ -133,7 +136,6 @@ class RegisterForm extends Component<RegisterFormProps, RegisterFormState> {
 
 
     render() {
-        let {on_register} = this.props;
 
         return (
             <div className="register-box-background">

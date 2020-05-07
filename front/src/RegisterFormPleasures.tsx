@@ -7,9 +7,17 @@ import { green } from '@material-ui/core/colors';
 import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 //import {RegisterFormProps, RegisterFormState} from './RegisterForm'
 import history from './history';
+import Form from 'react-bootstrap/Form'
+import FormData from 'form-data'
+
+let config = {
+    headers: {
+        "Content-Type": 'multipart/form-data'
+    }
+};
 
 type RegisterFormPleasuresProps = {
-    on_register: boolean;
+    user_id: any;
 
 }
 
@@ -19,6 +27,7 @@ type RegisterFormPleasuresState = {
     sport: boolean;
     party: boolean;
     art: boolean;
+    image: any;
 }
 
 const GreenCheckbox = withStyles({
@@ -34,7 +43,7 @@ const GreenCheckbox = withStyles({
 
 class RegisterFormPleasures extends Component<RegisterFormPleasuresProps, RegisterFormPleasuresState> {
 
-
+    private fileInput: React.RefObject<HTMLInputElement>
     constructor(props: RegisterFormPleasuresProps) {
         super(props);
         this.state = {
@@ -43,8 +52,9 @@ class RegisterFormPleasures extends Component<RegisterFormPleasuresProps, Regist
             sport: false,
             party: false,
             art: false,
+            image: null,
         }
-
+        this.fileInput = React.createRef();
     }
 
 
@@ -60,7 +70,41 @@ class RegisterFormPleasures extends Component<RegisterFormPleasuresProps, Regist
             //},
             //body: JSON.stringify(data)
         //});
-        axios.post('http://127.0.0.1:8000/api/profile/', this.state);
+
+        let formData = new FormData();
+        let {user_id} = this.props;
+        console.log(localStorage.getItem("user_id"));
+        if (this.state.music){
+            formData.append('music', 1)
+        }else{
+            formData.append('music', 0)
+        }
+        if (this.state.literature){
+            formData.append('literature', 1)
+        }else{
+            formData.append('literature', 0)
+        }
+        if (this.state.sport){
+            formData.append('sport', 1)
+        }else{
+            formData.append('sport', 0)
+        }
+        if (this.state.party){
+            formData.append('party', 1)
+        }else{
+            formData.append('party', 0)
+        }
+        if (this.state.art){
+            formData.append('art', 1)
+        }else{
+            formData.append('art', 0)
+        }
+        formData.append('image', this.state.image)
+        console.log(formData);
+        console.log(user_id);
+        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem("user_id") + '/', formData, config).then( r => {
+            console.log(r);
+           });
         history.push('');
     };
 
@@ -96,15 +140,34 @@ class RegisterFormPleasures extends Component<RegisterFormPleasuresProps, Regist
     };
 
 
+    fileSelectedHandler = (event: any) => {
+        event.preventDefault();
+        let file = event.target.files[0];
+        console.log(file);
+        if ( file !== null){
+            this.setState({
+                    image: file,
+                });
+        }
+    }
+
     render() {
-        let {on_register} = this.props;
 
         return (
 
             <div className="register-box-background-pleasures">
             <div className="register-box">Register
+            <Form>
+            <Form.File
+                id="custom-file"
+                label={(this.state.image != null) ? this.state.image.name : "os"}
+                onChange={this.fileSelectedHandler}
+                custom
+                />
+            </Form>
                 <div className="register-pleasures-box">
                 <form method="post" onSubmit={event => {this.onSubmit(event)}}>
+
                     <div className="register-pleasures-checkbox">
                         <FormControlLabel
                                     control={<GreenCheckbox checked={this.state.music} onChange={this.handleChange} name="music" />}

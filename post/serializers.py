@@ -1,14 +1,35 @@
 from abc import ABC
 
 from rest_framework.serializers import DateTimeField, HyperlinkedModelSerializer, Serializer
-from post.models import Post, Profile
-from django.contrib.auth.models import User
+from post.models import Post, Profile, User
+#from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 
 
+class ProfileSerializer(HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = ['id', 'music', 'literature', 'sport', 'party', 'art', 'image']
+        # title = models.CharField(max_length=30, blank=True)
+        # content = models.TextField()
+        # author = models.ForeignKey(User(), on_delete=models.CASCADE)
+        # date = models.DateTimeField(auto_now_add=True)
+
+    def update(self, instance, validated_data):
+        print(f'instance {instance}')
+        print(f'validated_data {validated_data}')
+        pass
+
+    def create(self, validated_data):
+        instance = self.Meta.model(**validated_data)
+        instance.save()
+        return instance
+
+
 class UserRegistrationSerializer(HyperlinkedModelSerializer):
-    token = serializers.SerializerMethodField()
+    profile = ProfileSerializer()
 
     def create(self, validated_data):
         plain_password = validated_data.pop('password')
@@ -16,6 +37,20 @@ class UserRegistrationSerializer(HyperlinkedModelSerializer):
         instance.set_password(plain_password)
         instance.save()
         return instance
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'password', 'email', 'first_name', 'last_name', 'creation_date', 'profile']
+
+
+class UserSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username']
+
+
+class UserConnectSerializer(HyperlinkedModelSerializer):
+    token = serializers.SerializerMethodField()
 
     def get_token(self, obj):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -26,13 +61,7 @@ class UserRegistrationSerializer(HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ['token', 'username', 'password', 'email', 'first_name', 'last_name']
-
-
-class UserSerializer(HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username']
+        fields = ['token', 'id', 'username', 'password']
 
 
 class PostSerializer(HyperlinkedModelSerializer):
@@ -54,21 +83,6 @@ class PostSerializer(HyperlinkedModelSerializer):
         pass
 
 
-class ProfileSerializer(HyperlinkedModelSerializer):
-    user_reference = UserSerializer()
 
-    class Meta:
-        model = Profile
-        fields = ['user_reference', 'id', 'music', 'literature', 'sport', 'party', 'art']
-        # title = models.CharField(max_length=30, blank=True)
-        # content = models.TextField()
-        # author = models.ForeignKey(User(), on_delete=models.CASCADE)
-        # date = models.DateTimeField(auto_now_add=True)
-
-    def update(self, instance, validated_data):
-        pass
-
-    def create(self, validated_data):
-        pass
 
 

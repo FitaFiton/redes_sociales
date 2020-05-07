@@ -41,9 +41,11 @@ class App extends Component {
             <Router history={history}>
                 <NavBar/>
                 <Switch>
+                    <Route path="/registerProfile" id_user={localStorage.getItem("user_id")} component={RegisterFormPleasures}/>
+
                     <Route path="/register" on_register={true} component={RegisterForm}/>
-                    <Route path="/registerPleasures" component={RegisterFormPleasures}/>
                     <Route path="/login" component={LoginForm}/>
+
                     <Route path="/myprofile" component={MyProfile}/>
                     <Route path="/chat" component={Chat}/>
                     <Route path="/" component={PostList}/>

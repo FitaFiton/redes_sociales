@@ -38,6 +38,7 @@ export class NavBar extends Component {
 
         localStorage.removeItem('session');
         localStorage.removeItem('username');
+        localStorage.removeItem('user_id');
         axios.defaults.headers.common['Authorization'] = '';
 
         axios.interceptors.request.use( config => {

@@ -1,7 +1,7 @@
 .main-container{
-    max-width: 1200px;
+    max-width: 1150px;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .extend-width{
@@ -31,6 +31,7 @@
     background-color: gray;
     margin-left: 20px; 
     padding-top: 10px;
+    max-width: 54%;
     
 }
 
@@ -66,7 +67,7 @@
 
 .post-imput{
     justify-content: right;
-    margin:10px;
+    
 }
 
 .post-title-imput{
@@ -96,4 +97,8 @@
     background-color: white;
     width: 190px;
     height: 190px;
+}
+
+.post-card{
+
 }

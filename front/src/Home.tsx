@@ -60,71 +60,7 @@ export class Home extends Component {
 
         return(
             <div className="extend-width ">
-                <Container className="rounded-border extend-width main-container">
-                    <Row >
-
-                        <Col  className="profile-image-box rounded-border">
-                            <Image className="image-exammple" src="holder.js/171x180" roundedCircle />
-                        </Col>
-
-                        <Col className="box-4 rounded-border" xs={9}>
-                            <Form className="post-imput">
-                                <Col md={{ offset: 9}} >
-                                    <Form.Group  className="post-title-imput" controlId="postTitle"  >
-                                        <Form.Control id="tf_title" className="post-imput-label" placeholder="Title"  onChange={this.onChangeTextField}/>
-                                    </Form.Group>
-                                </Col>
-                                
-                                <Form.Group controlId="postContent">
-                                    <Form.Control id="tf_content" className="post-imput-label" placeholder="Content" onChange={this.onChangeTextField}/>
-                                </Form.Group>
-
-                                <Col md={{ span:12, offset: 9}} >
-                                    <Button  variant="secondary" onClick={() => {
-                                        //Enviar los datos al servidor
-                                        //Recopilar los datos
-                                        //Peticion
-
-                                        axios.post('http://127.0.0.1:8000/api/post/', {
-                                            title: this.state['tf_title'],
-                                            content: this.state['tf_content'],
-                                        }, config).then(response => {
-                                            console.log(response);
-                                            this.setState({
-                                                posts: [...this.state.posts, response.data],
-                                                });
-                                            });
-                                    }}>Publicar</Button>
-                                </Col>
-
-                            </Form>
-                        </Col>
-                        
-                    </Row>
-
-                    
-                    <Row >
-                        <Col md={{span: 9, offset: 3 }} className= "post-button-container">
-                            <Col md={{ offset: 10}} >
-                                <Button  variant="secondary" onClick={() => {
-                                    //Enviar los datos al servidor
-                                    //Recopilar los datos
-                                    //Peticion
-
-                                    axios.post('http://127.0.0.1:8000/api/post/', {
-                                        title: this.state['tf_title'],
-                                        content: this.state['tf_content'],
-                                    }, config).then(response => {
-                                        console.log(response);
-                                        this.setState({
-                                            posts: [...this.state.posts, response.data],
-                                            });
-                                        });
-                                }}>Publicar</Button>
-                            </Col>
-                        </Col>
-                    </Row>
-                </Container>
+                
 
                 
 

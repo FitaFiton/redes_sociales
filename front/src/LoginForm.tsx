@@ -58,6 +58,7 @@ class LoginForm extends Component<LoginFormProps, LoginFormState> {
                 return config;
             });
             history.push('');
+            window.location.reload(false);
         });
     };
 

@@ -17,11 +17,21 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 
 import SplitButton from 'react-bootstrap/SplitButton'
 
-export class NavBar extends Component {
 
-    state = {
-        logged_in: false,
-    };
+type NavBarProps = {
+    logged_in: boolean;
+}
+
+type NavBarState = {
+    logged_in: boolean;
+}
+
+export class NavBar extends Component <NavBarProps, NavBarState>{
+
+    constructor(props: NavBarProps) {
+        super(props);
+        
+    }
 
     componentDidMount(): void {
         console.log("EMPEZANDO NAVBAR");
@@ -31,6 +41,10 @@ export class NavBar extends Component {
         else{
             this.setState({logged_in: false});
         }
+    }
+
+    componentWillReceiveProps(nextProps: Readonly<{}>, nextContext: any): void {
+        console.log("Componenwill")
     }
 
     logout = () => {
@@ -50,16 +64,19 @@ export class NavBar extends Component {
     };
 
     render(){
+        let {logged_in} = this.props;
+
         return(
-            <Navbar collapseOnSelect bg="light" expand="lg"  >
-                <Navbar.Brand href="/" >{this.state.logged_in ? 'Hola, ' + localStorage.getItem('username') : 'Anónimo'}</Navbar.Brand>
+            <Navbar sticky="top" collapseOnSelect bg="light" expand="lg"  >
+                <Navbar.Brand href="/home" >{logged_in ? 'Hola, ' + localStorage.getItem('username') : 'Anónimo'}</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                         {
-                            this.state.logged_in ? 
+                            logged_in ? 
                             <Navbar.Collapse id="responsive-navbar-nav" > 
                                 <Nav className="navbar-box-1">
-                                    <Nav.Link href="/">Home</Nav.Link>
+                                    <Nav.Link href="/home">Home</Nav.Link>
                                     <Nav.Link href="/">Posts</Nav.Link>
+                        
                                     <Nav.Link href="/Chat/">Chat</Nav.Link>
                                 </Nav>
                                 <Nav className=" navbar-box-2">
@@ -75,7 +92,7 @@ export class NavBar extends Component {
                             :
                             <Navbar.Collapse id="responsive-navbar-nav" > 
                                 <Nav className="navbar-box-1">
-                                    <Nav.Link href="/">Home</Nav.Link>
+                                    <Nav.Link href="/home">Home</Nav.Link>
                                     <Nav.Link href="/">About us</Nav.Link>
                                 </Nav>
                                 <Nav className=" navbar-box-2">

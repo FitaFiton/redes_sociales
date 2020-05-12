@@ -4,8 +4,15 @@
     padding-right: 13%; */
     width: 80%;
     margin: 0 auto;
+    padding-top: 20px;
 }
 
 .post-list-atributes{
     padding-bottom: 20px;
+    
+}
+
+
+.post-list-atributes-table{
+    width: 100%;
 }

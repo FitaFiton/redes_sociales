@@ -2,38 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2290677e-53b5-4e51-87ac-42863e7d88a2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/front/src/Home.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/Home_styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/PostCardView.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/PostCardView_styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/tablaPosts.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_redes_sociales/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_redes_sociales/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_redes_sociales/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_redes_sociales/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_redes_sociales/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_redes_sociales/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/assets/webpack-stats.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/assets/webpack-stats.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/assets/webpack_bundles/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/assets/webpack_bundles/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/node_modules/form-data/License" beforeDir="false" afterPath="$PROJECT_DIR$/front/node_modules/form-data/License" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/node_modules/form-data/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/front/node_modules/form-data/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/node_modules/form-data/README.md.bak" beforeDir="false" afterPath="$PROJECT_DIR$/front/node_modules/form-data/README.md.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/node_modules/form-data/lib/browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/node_modules/form-data/lib/browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/node_modules/form-data/lib/form_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/node_modules/form-data/lib/form_data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/node_modules/form-data/lib/populate.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/node_modules/form-data/lib/populate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/node_modules/form-data/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/node_modules/form-data/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/node_modules/form-data/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/MyProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/MyProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/MyProfile_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/MyProfile_styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/NavBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/PostList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/PostList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/RegisterForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/RegisterFormPleasures.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/RegisterFormPleasures.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/post/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/post/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/migrations/0002_post_author.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/migrations/0003_profile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/PostList_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/PostList_styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/tabla.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/tabla.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/post/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/post/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/post/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/post/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,10 +84,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="526" y="216" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588707927386">
+    <state x="526" y="216" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589312194338">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="526" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1588707927386" />
+    <state x="526" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1589312194338" />
     <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1581519537482">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

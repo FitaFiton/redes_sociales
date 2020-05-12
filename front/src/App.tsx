@@ -13,6 +13,7 @@ import {PostList} from "./PostList";
 import {Chat} from "./Chat"
 import history from './history';
 import { MyProfile } from './MyProfile';
+import { Home } from './Home';
 
 class App extends Component {
 
@@ -33,13 +34,15 @@ class App extends Component {
         console.log("REGISTER");
     };
 
+
     render() {
+        console.log("Inicio App")
 
         return(
 
             <BrowserRouter >
-            <Router history={history}>
-                <NavBar/>
+            <Router history={history} >
+                <NavBar logged_in={localStorage.getItem("session") !== null}/>
                 <Switch>
                     <Route path="/registerProfile" id_user={localStorage.getItem("user_id")} component={RegisterFormPleasures}/>
 
@@ -48,6 +51,7 @@ class App extends Component {
 
                     <Route path="/myprofile" component={MyProfile}/>
                     <Route path="/chat" component={Chat}/>
+                    <Route path="/home" component={Home}/>
                     <Route path="/" component={PostList}/>
                 </Switch>
              </Router>

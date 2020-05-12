@@ -51,4 +51,3 @@ class Post(models.Model):
 
 
 
-

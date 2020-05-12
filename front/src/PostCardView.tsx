@@ -10,8 +10,8 @@ const PostCardContent = (props: any) => {
 
     posts = posts.map((post: any, i: number) => {
         return (
-            <Card  key={post.id} className="post-card-box post-card-max-width">
-                <Card.Body className="text-right " key={post.id}>
+            <Card style={{ width: '34rem' }} key={post.id} className="post-card-box">
+                <Card.Body className="text-right" key={post.id}>
                     <Card.Title >{post.title}</Card.Title>
                     
                     <Card.Text className="text-justify">

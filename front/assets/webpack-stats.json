@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main.js","path":"C:\\Users\\Javier\\PycharmProjects\\redes_sociales\\front\\assets\\webpack_bundles\\main.js"}]}}
+{"status":"done","chunks":{"main":[{"name":"main.js","path":"C:\\Users\\Javier\\PycharmProjects\\redes_sociales\\front\\assets\\webpack_bundles\\main.js"}]},"error":"unknown-error","message":"[tsl] ERROR in C:\\Users\\Javier\\PycharmProjects\\redes_sociales\\front\\src\\NewFriends.tsx(31,13)\r\n      TS2304: Cannot find name 'user_friends'."}

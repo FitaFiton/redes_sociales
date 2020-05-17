@@ -60,7 +60,9 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
             return config;
         });
         this.setState({logged_in: false});
+
         history.push('/login');
+        window.location.reload(false);
     };
 
     render(){

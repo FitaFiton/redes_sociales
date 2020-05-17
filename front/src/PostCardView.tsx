@@ -21,7 +21,13 @@ const PostCardContent = (props: any) => {
                     <Card.Subtitle  className="text-muted post-date-text">{post.date}</Card.Subtitle>
 
                     <Card.Link href="/myprofile">{post.author.username}</Card.Link>
-                    <Card.Link href="#" onClick={() => {on_click_delete(post.id)}}><i className="fas fa-trash-alt fa-lg "></i></Card.Link>
+                    {
+                        (post.author.username == localStorage.getItem("username")) ?
+                            <Card.Link href="#" onClick={() => { on_click_delete(post.id)}}><i className="fas fa-trash-alt fa-lg "></i></Card.Link>
+                            :
+                            <div></div>
+                    }
+
                 </Card.Body>
             </Card>
         );

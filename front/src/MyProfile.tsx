@@ -79,7 +79,7 @@ export class MyProfile extends Component {
                     <Row >
 
                         <Col  className="profile-image-box rounded-border">
-                            <Image className="image-exammple" src="holder.js/171x180" roundedCircle />
+                            <Image className="image-exammple" src="http://127.0.0.1:8000/media/static/WMW_Diagrama_de_clases_e28WOlo.jpg" roundedCircle />
                         </Col>
 
                         <Col className="box-4 separator rounded-border" xs={9}>
@@ -89,7 +89,7 @@ export class MyProfile extends Component {
                                         <Form.Control id="tf_title" className="post-imput-label" placeholder="Title"  onChange={this.onChangeTextField}/>
                                     </Form.Group>
                                 </Col>
-                                
+
                                 <Form.Group controlId="postContent">
                                     <Form.Control id="tf_content" className="post-imput-label" placeholder="Content" onChange={this.onChangeTextField}/>
                                 </Form.Group>
@@ -116,14 +116,14 @@ export class MyProfile extends Component {
                                 </Col>
                             </Row>
                         </Col>
-                        
+
                     </Row>
                 </Container>
 
-                
+
 
                 <Container fluid="md">
-            
+
                     <Row className="box-2-3" >
                         <Col className="box-2 rounded-border">1 of 3</Col>
 
@@ -132,11 +132,11 @@ export class MyProfile extends Component {
                             {/* <div className = "post-list-atributes">
                                 <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
                             </div> */}
-                            
+
                                 <PostCard  data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
-                            
-               
-                            
+
+
+
                         </Col>
                     </Row>
 

@@ -1,0 +1,22 @@
+.newFriend-image{
+    display: flex;
+    justify-content: center;
+    width: 10rem;
+}
+
+.newFriend-icons{
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    width: 10rem;
+}
+
+.element-separator{
+    margin-right: 3px;
+}
+
+.add-button{
+    justify-items: right;
+    margin-top: 8px;
+    width: 11rem;
+}

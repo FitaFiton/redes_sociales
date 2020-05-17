@@ -3,8 +3,8 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from post.serializers import PostSerializer, UserSerializer, UserRegistrationSerializer, ProfileSerializer
-from post.models import Post, Profile, User
+from post.serializers import PostSerializer, UserSerializer, UserRegistrationSerializer, ProfileSerializer, FriendSerializer, ActualFriendsSerializer
+from post.models import Post, Profile, User, Friend
 #from django.contrib.auth.models import User
 #from django.contrib.auth import get_user_model
 #User = get_user_model()
@@ -33,8 +33,14 @@ class UserViewSet(ModelViewSet):
         return ProfileSerializer
 
     def retrieve(self, request, *args, **kwargs):
-        serializer = UserSerializer(request.user)
-        return Response(serializer.data)
+        url = request.build_absolute_uri()
+        if url.endswith('/'):
+            url = url[:-1]
+
+        user_id = url.split('/')[-1]
+        user = UserSerializer(User.objects.get(id=user_id))
+
+        return Response(user.data)
 
     def create(self, request, *args, **kwargs):
         request.data['profile'] = Profile.objects.create(music=False, literature=False, sport=False, party=False, art=False)
@@ -123,14 +129,21 @@ class ProfileViewSet(ModelViewSet):
 
 class PostViewSet(ModelViewSet):
     #queryset = Post.objects.all()
-    #permission_classes = (AllowAny,)
+    permission_classes = (AllowAny,)
     #Post.objects.filter(title='hola')
 
     def get_queryset(self):
         print(self.request.query_params.get('filterByUser', None))
-        mode = self.request.query_params.get('filterByUser', None)
-        if mode:
+        mode_posts_actual_user = self.request.query_params.get('filterByUser', None)
+        mode_posts_profile_user = self.request.query_params.get('filterByProfile', None)
+        print(self.request)
+        print(mode_posts_profile_user)
+        if mode_posts_actual_user:
             return Post.objects.filter(author=self.request.user)
+        elif mode_posts_profile_user:
+            url = self.request.build_absolute_uri()
+            url_arguments = url.split("=")
+            return Post.objects.filter(author=url_arguments[1])
         else:
             return Post.objects.all()
 
@@ -166,3 +179,57 @@ class PostViewSet(ModelViewSet):
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+
+class FriendViewSet(ModelViewSet):
+    #queryset = Post.objects.all()
+    permission_classes = (AllowAny,)
+    #Post.objects.filter(title='hola')
+
+    def get_queryset(self):
+        print(self.request.query_params.get('filterByUser', None))
+        mode_friend_actual_user = self.request.query_params.get('filterByUser', None)
+        #mode_friend_profile_user = self.request.query_params.get('filterByProfile', None)
+        print(self.request.user)
+        #print(mode_posts_profile_user)
+        if mode_friend_actual_user:
+            url = self.request.build_absolute_uri()
+            url_arguments = url.split("=")
+            #return Friend.objects.raw('SELECT friend_id FROM post_friend WHERE user_id=3')
+            return Friend.objects.filter(user_id=url_arguments[1])
+        #elif mode_posts_profile_user:
+            #url = self.request.build_absolute_uri()
+            #url_arguments = url.split("=")
+            #return Post.objects.filter(author=url_arguments[1])
+        else:
+            return Friend.objects.all()
+
+    def get_serializer_class(self, *args, **kwargs):
+        return FriendSerializer
+
+    #def list(self, request, *args, **kwargs):
+        #print(request.headers)
+        #return super().list(request, args, kwargs)
+
+    def create(self, request, *args, **kwargs):
+        p = Friend.objects.create(
+            user_id=request.data['user_id'],
+            friend_id=request.data['friend_id'],
+        )
+        serialized_data = self.get_serializer(p).data
+        return Response(serialized_data, status=status.HTTP_201_CREATED)#201 para crear correctamente un nuevo post
+
+    def destroy(self, request, *args, **kwargs):
+        url = request.build_absolute_uri()
+        if url.endswith('/'):
+            url = url[:-1]
+
+        friend_id = url.split('/')[-1]
+
+        try:
+            f = Friend.objects.get(id=friend_id)
+            if request.user.id == f.user_id:
+                f.delete()
+                return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        except Friend.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)

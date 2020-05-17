@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Home_styles.css';
 import axios from 'axios'
 import PostCard from "./PostCardView"
+import {NewFriends} from "./NewFriends"
 import { Row, Container, Col, Card, Accordion, Form,Button, Image} from 'react-bootstrap';
 
 let config = {
@@ -20,7 +21,7 @@ export class Home extends Component {
     };
 
     componentDidMount(): void {
-        console.log("hola");
+        console.log(localStorage.getItem("session"));
         axios.get('http://127.0.0.1:8000/api/post/?filterByUser=1', config).then((response) => {
             console.log(response);
             this.setState({
@@ -110,7 +111,12 @@ export class Home extends Component {
                
                         </Col>
 
-                        <Col xs lg="3" className="box-5 rounded-border">3 of 3</Col>
+                        <Col xs lg="3" className="box-5 rounded-border">3 of 3
+                        <div>
+                        <NewFriends>
+                        </NewFriends>
+                        </div>
+                        </Col>
                     </Row>
 
                 </Container>

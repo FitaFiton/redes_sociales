@@ -50,4 +50,14 @@ class Post(models.Model):
         return f'{ {self.pk} } - {self.title}: {self.content} - {self.author}'
 
 
+class Friend(models.Model):
+    user_id = models.IntegerField(null=False)
+    friend_id = models.IntegerField(null=False)
+
+    class Meta:
+        unique_together = ('user_id', 'friend_id',)
+
+    def __str__(self):
+        #return '{{}} - {}: {}'.format(self.pk, self.title, self.content)
+        return f'{ {self.pk} } - {self.user_id}: {self.friend_id}'
 

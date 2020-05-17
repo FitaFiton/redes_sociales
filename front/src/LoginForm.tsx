@@ -48,6 +48,7 @@ class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
         axios.post('http://127.0.0.1:8000/auth/', this.state).then(r => {
             console.log(r);
+
             localStorage.setItem('session', r.data.token);
             localStorage.setItem('user_id', r.data.user.id);
             localStorage.setItem('username', r.data.user.username);
@@ -57,7 +58,7 @@ class LoginForm extends Component<LoginFormProps, LoginFormState> {
                 config.headers.Authorization = `JWT ${r.data.token}`;
                 return config;
             });
-            history.push('');
+            history.push('/home');
             window.location.reload(false);
         });
     };

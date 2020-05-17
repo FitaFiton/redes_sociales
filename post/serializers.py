@@ -1,7 +1,7 @@
 from abc import ABC
 
 from rest_framework.serializers import DateTimeField, HyperlinkedModelSerializer, Serializer
-from post.models import Post, Profile, User
+from post.models import Post, Profile, User, Friend
 #from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
@@ -28,6 +28,13 @@ class ProfileSerializer(HyperlinkedModelSerializer):
         return instance
 
 
+class ProfilePleasuresInfoSerializer(HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = ['music', 'literature', 'sport', 'party', 'art']
+
+
 class UserRegistrationSerializer(HyperlinkedModelSerializer):
     profile = ProfileSerializer()
 
@@ -44,6 +51,15 @@ class UserRegistrationSerializer(HyperlinkedModelSerializer):
 
 
 class UserSerializer(HyperlinkedModelSerializer):
+    profile = ProfileSerializer()
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'creation_date', 'profile']
+
+
+class UserReference(HyperlinkedModelSerializer):
+
     class Meta:
         model = User
         fields = ['id', 'username']
@@ -66,7 +82,7 @@ class UserConnectSerializer(HyperlinkedModelSerializer):
 
 class PostSerializer(HyperlinkedModelSerializer):
     date = DateTimeField(format='%d-%m-%Y %H: %M: %S')
-    author = UserSerializer()
+    author = UserReference()
 
     class Meta:
         model = Post
@@ -83,6 +99,38 @@ class PostSerializer(HyperlinkedModelSerializer):
         pass
 
 
+class FriendSerializer(HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Friend
+        fields = ['user_id', 'friend_id']
+        # title = models.CharField(max_length=30, blank=True)
+        # content = models.TextField()
+        # author = models.ForeignKey(User(), on_delete=models.CASCADE)
+        # date = models.DateTimeField(auto_now_add=True)
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+
+class ActualFriendsSerializer(HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Friend
+        fields = ['friend_id']
+        # title = models.CharField(max_length=30, blank=True)
+        # content = models.TextField()
+        # author = models.ForeignKey(User(), on_delete=models.CASCADE)
+        # date = models.DateTimeField(auto_now_add=True)
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
 
 
 

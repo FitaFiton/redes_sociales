@@ -20,7 +20,7 @@ from django.conf.urls import url
 from django.urls import path, include
 from django.views.generic import TemplateView
 from rest_framework import routers
-from post.api import PostViewSet, UserViewSet, ProfileViewSet
+from post.api import PostViewSet, UserViewSet, ProfileViewSet, FriendViewSet
 from rest_framework_jwt.views import obtain_jwt_token
 
 from post.views import use_twitter
@@ -29,6 +29,7 @@ router = routers.DefaultRouter()
 router.register(r'post', PostViewSet, basename='Post')
 router.register(r'profile', ProfileViewSet, basename='Profile')
 router.register(r'user', UserViewSet)
+router.register(r'friend', FriendViewSet, basename='Friend')
 
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
     path('admin/', admin.site.urls),

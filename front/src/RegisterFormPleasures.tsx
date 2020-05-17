@@ -104,8 +104,10 @@ class RegisterFormPleasures extends Component<RegisterFormPleasuresProps, Regist
         console.log(user_id);
         axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem("user_id") + '/', formData, config).then( r => {
             console.log(r);
-           });
-        history.push('');
+            history.push('/home');
+            window.location.reload(false);
+        });
+
     };
 
     handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -160,43 +162,48 @@ class RegisterFormPleasures extends Component<RegisterFormPleasuresProps, Regist
             <Form>
             <Form.File
                 id="custom-file"
-                label={(this.state.image != null) ? this.state.image.name : "os"}
+                label={(this.state.image != null) ? this.state.image.name : "Escoja su foto de perfil"}
                 onChange={this.fileSelectedHandler}
                 custom
                 />
             </Form>
                 <div className="register-pleasures-box">
                 <form method="post" onSubmit={event => {this.onSubmit(event)}}>
-
+                    Escoja sus gustos
                     <div className="register-pleasures-checkbox">
                         <FormControlLabel
                                     control={<GreenCheckbox checked={this.state.music} onChange={this.handleChange} name="music" />}
-                                    label="music"
+                                    label=""
                         />
+                        <i className="fas fa-music element-separator"></i>
                     </div>
                     <div className="register-pleasures-checkbox">
                         <FormControlLabel
                                     control={<GreenCheckbox checked={this.state.literature} onChange={this.handleChange} name="literature" />}
-                                    label="literature"
+                                    label=""
                         />
+                        <i className="fas fa-book element-separator"></i>
                     </div>
                     <div className="register-pleasures-checkbox">
                         <FormControlLabel
                                     control={<GreenCheckbox checked={this.state.sport} onChange={this.handleChange} name="sport" />}
-                                    label="sport"
+                                    label=""
                         />
+                        <i className="fas fa-futbol element-separator"></i>
                     </div>
                     <div className="register-pleasures-checkbox">
                         <FormControlLabel
                                     control={<GreenCheckbox checked={this.state.party} onChange={this.handleChange} name="party" />}
-                                    label="party"
+                                    label=""
                         />
+                        <i className="fas fa-glass-cheers element-separator"></i>
                     </div>
                     <div className="register-pleasures-checkbox">
                         <FormControlLabel
                                     control={<GreenCheckbox checked={this.state.art} onChange={this.handleChange} name="art" />}
-                                    label="art"
+                                    label=""
                         />
+                        <i className="fas fa-palette"></i>
                     </div>
                     <div className="register-button">
                         <Fab type="submit" variant="extended" color="secondary" size="medium" aria-label="add">Continue</Fab>

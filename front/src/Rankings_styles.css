@@ -1,0 +1,26 @@
+
+
+.most-followers-box {
+    height: 15%;
+    display: grid;
+
+}
+
+.text-title {
+    margin-top: 5px;
+    font-size: medium;
+    text-align: center;
+}
+
+.text-users {
+    background-color: red;
+    margin-top: 2px;
+    font-size: small;
+    text-align: center;
+}
+
+.most-posts-box {
+    margin-top: 20px;
+    height: 15%;
+    display: grid;
+}

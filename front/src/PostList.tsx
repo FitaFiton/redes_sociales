@@ -61,6 +61,8 @@ export class PostList extends Component {
                 });
             }
         });
+
+
     };
 
     render() {
@@ -91,11 +93,7 @@ export class PostList extends Component {
                          });
                        });
 
-                     axios.post('http://127.0.0.1:8000/tweet/', {
-                        text: this.state['tf_title']
-                    }, config).then(response => {
-                        console.log(response);
-                       });
+
                 }}>Publicar</Button>
             </Container>
     );

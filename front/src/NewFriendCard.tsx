@@ -13,8 +13,7 @@ const NewFriendContent = (props: any) => {
         return (
             <Card style={{ width: '15rem' }} key={newFriend.id} className="post-card-box">
                 <Card.Body className="text-right" key={newFriend.id}>
-                    <Card.Title >{newFriend.username}</Card.Title>
-                    <Button  onClick={() => {
+                    <Card.Title ><Button  onClick={() => {
                                             //Enviar los datos al servidor
                                             //Recopilar los datos
                                             //Peticion
@@ -22,7 +21,9 @@ const NewFriendContent = (props: any) => {
                                             localStorage.setItem('last_profile_id_clicked', newFriend.id);
                                             console.log(localStorage.getItem('last_profile_id_clicked'));
                                             history.push('/profile');
-                                        }}>Perfil</Button>
+                                        }}><b>{newFriend.username}</b></Button>
+                    </Card.Title>
+
                     <Col xs={6} md={4}>
                     {
                         newFriend.profile ?
@@ -69,6 +70,12 @@ const NewFriendContent = (props: any) => {
                     axios.post('http://127.0.0.1:8000/api/friend/', {
                         user_id: localStorage.getItem("user_id"),
                         friend_id: newFriend.id,
+                    }).then(response => {
+                        console.log(response);
+                       });
+
+                    axios.put('http://127.0.0.1:8000/api/user/'+ newFriend.id + '/', {
+                        followers: 1
                     }).then(response => {
                         console.log(response);
                        });

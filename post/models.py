@@ -29,6 +29,8 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=80, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     profile = models.OneToOneField(Profile, unique=True, on_delete=models.CASCADE, null=True, )
+    posts_number = models.IntegerField(default=0)
+    followers = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'auth_user'

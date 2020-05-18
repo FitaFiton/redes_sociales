@@ -16,13 +16,18 @@ class UserViewSet(ModelViewSet):
     #Post.objects.filter(title='hola')
 
     def get_queryset(self):
-        print(self.request.query_params.get('filterByUser', None))
-        mode = self.request.query_params.get('filterByUser', None)
-        if mode:
-            print(self.request.user)
+        mode_user = self.request.query_params.get('filterByUser', None)
+
+        mode_followers = self.request.query_params.get('filterByMostFollowers', None)
+        mode_posts = self.request.query_params.get('filterByByMostPosts', None)
+        if mode_user:
             print(User.objects.filter(username=self.request.user))
 
             return User.objects.filter(username=self.request.user)
+        elif mode_followers:
+            return User.objects.all().order_by('followers')[:3]
+        elif mode_posts:
+            return User.objects.all().order_by('posts_number')[:3]
         else:
             return User.objects.all()
 
@@ -73,17 +78,30 @@ class UserViewSet(ModelViewSet):
 
         user_id = url.split('/')[-1]
         user = User.objects.get(id=user_id)
-        profile = Profile.objects.get(id=user.profile.id)
+        if 'posts_number' in request.data:
+            if request.data['posts_number'] == 1:
+                user.posts_number = user.posts_number + 1
+            elif request.data['posts_number'] == -1:
+                user.posts_number = user.posts_number - 1
+            user.save()
+        elif 'followers' in request.data:
+            if request.data['followers'] == 1:
+                user.followers = user.followers + 1
+            elif request.data['followers'] == -1:
+                user.followers = user.followers - 1
+            user.save()
+        elif 'music' in request.data:
+            profile = Profile.objects.get(id=user.profile.id)
 
-        profile.music = request.data['music']
-        profile.literature = request.data['literature']
-        profile.sport = request.data['sport']
-        profile.party = request.data['party']
-        profile.art = request.data['art']
-        profile.image = request.data['image']
+            profile.music = request.data['music']
+            profile.literature = request.data['literature']
+            profile.sport = request.data['sport']
+            profile.party = request.data['party']
+            profile.art = request.data['art']
+            profile.image = request.data['image']
 
-        profile.save()
-        if profile:
+            profile.save()
+        if user:
             return Response("Ok se ha actualizado correctamente", status=status.HTTP_201_CREATED)
         return Response("No se ha podido actualizar su perfil", status=status.HTTP_400_BAD_REQUEST)
 
@@ -133,11 +151,9 @@ class PostViewSet(ModelViewSet):
     #Post.objects.filter(title='hola')
 
     def get_queryset(self):
-        print(self.request.query_params.get('filterByUser', None))
         mode_posts_actual_user = self.request.query_params.get('filterByUser', None)
         mode_posts_profile_user = self.request.query_params.get('filterByProfile', None)
-        print(self.request)
-        print(mode_posts_profile_user)
+
         if mode_posts_actual_user:
             return Post.objects.filter(author=self.request.user)
         elif mode_posts_profile_user:

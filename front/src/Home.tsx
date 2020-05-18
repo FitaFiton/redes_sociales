@@ -3,6 +3,7 @@ import './Home_styles.css';
 import axios from 'axios'
 import PostCard from "./PostCardView"
 import {NewFriends} from "./NewFriends"
+import {Rankings} from "./Rankings"
 import { Row, Container, Col, Card, Accordion, Form,Button, Image} from 'react-bootstrap';
 
 let config = {
@@ -22,11 +23,35 @@ export class Home extends Component {
 
     componentDidMount(): void {
         console.log(localStorage.getItem("session"));
-        axios.get('http://127.0.0.1:8000/api/post/?filterByUser=1', config).then((response) => {
+        axios.get('http://127.0.0.1:8000/api/post/', config).then((response) => {
             console.log(response);
+            let all_posts: any[] = [];
+            let posts_filtered: any[] = [];
+            all_posts = response.data;
+            axios.get('http://127.0.0.1:8000/api/friend/?filterByUser=' + localStorage.getItem("user_id")).then((response) => {
+            console.log(response);
+            let user_friends: any[] = [];
+            let friends_to_filter = response.data;
+
+
+            user_friends.push(Number(localStorage.getItem("user_id")));
+            for (var val of friends_to_filter){
+                user_friends.push(val['friend_id']);
+            }
+            console.log("AQUI LISTA AMIGOS")
+            console.log(user_friends);
+            for (val of all_posts){
+
+                if (user_friends.includes(val['author']['id'])){
+
+                    posts_filtered.push(val)
+                }
+            }
             this.setState({
-                posts: response.data,
+                posts: posts_filtered,
+                });
             });
+
         });
     }       
 
@@ -55,6 +80,12 @@ export class Home extends Component {
                 });
             }
         });
+
+        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+                        posts_number: -1
+                    }, config).then(response => {
+                        console.log(response);
+        });
     };
 
     render() {
@@ -68,7 +99,9 @@ export class Home extends Component {
                 <Container className="main-container" >
             
                     <Row className="box-2-3" >
-                        <Col xs lg="2" className="box-2 rounded-border">1 of 3</Col>
+                        <Col xs lg="2" className="box-2 rounded-border">1 of 3
+                            <Rankings/>
+                        </Col>
 
                         <Col className="box-3 rounded-border">
 
@@ -101,6 +134,13 @@ export class Home extends Component {
                                                     posts: [...this.state.posts, response.data],
                                                     });
                                                 });
+                                            axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+                                                    posts_number: 1
+                                                }, config).then(response2 => {
+                                                    console.log(response2);
+                                                   });
+
+
                                         }}>Publicar</Button>
                                     </Col>
                                     <PostCard data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>

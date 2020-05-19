@@ -24,6 +24,7 @@ type NavBarProps = {
 
 type NavBarState = {
     logged_in: boolean;
+    user_id: any;
 }
 
 export class NavBar extends Component <NavBarProps, NavBarState>{
@@ -36,7 +37,7 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
     componentDidMount(): void {
         console.log("EMPEZANDO NAVBAR");
         if (localStorage.getItem("session") !== null){
-               this.setState({logged_in: true});
+            this.setState({logged_in: true, user_id: localStorage.getItem('user_id')});
         }
         else{
             this.setState({logged_in: false});
@@ -82,7 +83,16 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
                                     <Nav.Link href="/Chat/">Chat</Nav.Link>
                                 </Nav>
                                 <Nav className=" navbar-box-2">
-                                    <SplitButton href="/myprofile" variant="secondary" alignRight title={<i className="far fa-user fa-sg icon-profile profile-dropdown"></i>} id="dropdown-menu-align-right">
+                                    <SplitButton
+                                    variant="secondary" 
+                                    alignRight title={<i className="far fa-user fa-sg icon-profile profile-dropdown"></i>} 
+                                    id="dropdown-menu-align-right"
+                                    onClick={() => {
+                                        localStorage.setItem('last_profile_id_clicked', this.state.user_id);
+                                        console.log(localStorage.getItem('last_profile_id_clicked'));
+                                        history.push('/profile');
+                                    }}>
+
                                         <NavDropdown.Item href="/">Settings</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                         <NavDropdown.Item  onClick={() => this.logout()}>Log out</NavDropdown.Item>

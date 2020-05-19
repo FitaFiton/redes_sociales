@@ -6,7 +6,7 @@ import axios from 'axios'
 import Tabla from "./tabla";
 import PostCard from "./PostCardView"
 
-import {TextField} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import NavBar from "./NavBar";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
@@ -19,14 +19,64 @@ let config = {
     }
 };
 
-
-export class MyProfile extends Component {
+/*
+    export class MyProfile extends Component {
 
     state = {
         posts: [],
         tf_title: '',
         tf_content: ''
     };
+*/
+
+export class MyProfile extends Component {
+
+    state = {
+        user: {
+            id: 0,
+            username: "",
+            email: "",
+            first_name: "",
+            last_name: "",
+            creation_date: "",
+            profile: {
+                music: false,
+                literature: false,
+                sport: false,
+                party: false,
+                art: false,
+                image: "",
+            },
+            posts_number: 0,
+            followers: 0,
+        },
+        posts: [],
+    };
+
+    constructor(props: any) {
+        super(props);
+        console.log("id del usuario a buscar");
+        console.log(localStorage.getItem('last_profile_id_clicked'));
+        axios.get('http://127.0.0.1:8000/api/user/' + localStorage.getItem('last_profile_id_clicked') + '/', config).then((response) => {
+            console.log(response);
+            response.data.profile.image = 'http://127.0.0.1:8000' + response.data.profile.image
+            this.setState({
+                user: response.data,
+            });
+            console.log("USER")
+
+            axios.get('http://127.0.0.1:8000/api/post/?filterByProfile=' + this.state.user.id).then((response) => {
+                console.log(response);
+
+                this.setState({
+                    posts: response.data,
+                });
+                console.log(this.state.posts);
+            });
+
+        });
+
+    }
 
     componentDidMount(): void {
         console.log("hola");
@@ -68,82 +118,100 @@ export class MyProfile extends Component {
     render() {
 
         return(
-            <div>
-                <Container fluid="md">
-                    <Row className= "separator">
-                        <Col className="box-1 rounded-border">1 of 1</Col>
-                    </Row>
-                </Container>
+            <div >
+                <Grid container  direction="row" spacing={3}>
+                    <Grid direction="column" item xs={1} sm={2}>
+                    </Grid>
+                    <Grid direction="column" item xs={10} sm={8}>
+                        <Grid direction="row" item xs={12} sm={12}>
+                            <div className="header-profile-box">
+                                <div className="text-username">
+                                    <b>{this.state.user.username}</b>
+                                </div>
+                            </div>
+                        </Grid>
+                        <Grid direction="row" item xs={12} sm={12}>
+                            <div className="grid-info">
+                                <Grid item xs={12} sm={4}>
+                                    <div className="image-profile-box">
+                                        <Image style={{ width: '10rem'}} src={this.state.user.profile.image} roundedCircle />
+                                        <div className="user-icons">
+                                            <Row xs={9} md={15}>
+                                                {
+                                                    this.state.user.profile.music ?
+                                                    <i className="fas fa-music element-separator"></i> : <i></i>
+                                                }
+                                                {
+                                                    this.state.user.profile.literature ?
+                                                    <i className="fas fa-book element-separator"></i> : <i></i>
+                                                }
+                                                {
+                                                    this.state.user.profile.sport ?
+                                                    <i className="fas fa-futbol element-separator"></i> : <i></i>
+                                                }
+                                                {
+                                                    this.state.user.profile.party ?
+                                                    <i className="fas fa-glass-cheers element-separator"></i> : <i></i>
+                                                }
+                                                {
+                                                    this.state.user.profile.art ?
+                                                    <i className="fas fa-palette"></i> : <i></i>
+                                                }
+                                            </Row>
+                                        </div>
+                                        <div className="info-profile-box">
+                                            <br></br>
+                                            <div className="text-titles">
+                                                Name:
+                                            </div>
+                                            <div className="text-descriptions">
+                                                {this.state.user.first_name}<br></br>
+                                            </div>
+                                            <br></br>
+                                            <div className="text-titles">
+                                                Last Name:
+                                            </div>
+                                            <div className="text-descriptions">
+                                                {this.state.user.last_name}<br></br>
+                                            </div>
+                                            <br></br>
+                                            <div className="text-titles">
+                                                Email:
+                                            </div>
+                                            <div className="text-descriptions">
+                                                {this.state.user.email}<br></br>
+                                            </div>
+                                            <br></br>
+                                            <div className="text-titles">
+                                                Register year:
+                                            </div>
+                                            <div className="text-descriptions">
+                                                {this.state.user.creation_date.substr(0,4)}<br></br>
+                                            </div>
+                                            <br></br>
+                                            <div className="text-titles">
+                                                Followers:
+                                            </div>
+                                            <div className="box-4 text-descriptions">
+                                                {this.state.user.followers}<br></br>
+                                            </div>
+                                            <br></br>
+                                        </div>
+                                    </div>
+                                </Grid>
 
-                <Container fluid="md" className="rounded-border">
-                    <Row >
-
-                        <Col  className="profile-image-box rounded-border">
-                            <Image className="image-exammple" src="http://127.0.0.1:8000/media/static/WMW_Diagrama_de_clases_e28WOlo.jpg" roundedCircle />
-                        </Col>
-
-                        <Col className="box-4 separator rounded-border" xs={9}>
-                            <Form className="post-imput">
-                                <Col md={{ offset: 9}} >
-                                    <Form.Group  className="post-title-imput" controlId="postTitle"  >
-                                        <Form.Control id="tf_title" className="post-imput-label" placeholder="Title"  onChange={this.onChangeTextField}/>
-                                    </Form.Group>
-                                </Col>
-
-                                <Form.Group controlId="postContent">
-                                    <Form.Control id="tf_content" className="post-imput-label" placeholder="Content" onChange={this.onChangeTextField}/>
-                                </Form.Group>
-                            </Form>
-                            <Row >
-                                <Col md={{span: 9, offset: 3 }} className= "separator post-button-container">
-                                    <Col md={{ offset: 10}} >
-                                        <Button  variant="secondary" onClick={() => {
-                                            //Enviar los datos al servidor
-                                            //Recopilar los datos
-                                            //Peticion
-
-                                            axios.post('http://127.0.0.1:8000/api/post/', {
-                                                title: this.state['tf_title'],
-                                                content: this.state['tf_content'],
-                                            }, config).then(response => {
-                                                console.log(response);
-                                                this.setState({
-                                                    posts: [...this.state.posts, response.data],
-                                                    });
-                                                });
-                                        }}>Publicar</Button>
-                                    </Col>
-                                </Col>
-                            </Row>
-                        </Col>
-
-                    </Row>
-                </Container>
-
-
-
-                <Container fluid="md">
-
-                    <Row className="box-2-3" >
-                        <Col className="box-2 rounded-border">1 of 3</Col>
-
-                        <Col xs={9} className="box-3 rounded-border">
-
-                            {/* <div className = "post-list-atributes">
-                                <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
-                            </div> */}
-
-                                <PostCard  data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
-
-
-
-                        </Col>
-                    </Row>
-
-                </Container>
-
+                                <Grid item xs={12} sm={8}>
+                                    <div className="profile-posts-view">
+                                        <PostCard className="post-card" data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
+                                    </div>
+                                </Grid>
+                            </div>
+                        </Grid>
+                    </Grid>
+                    <Grid direction="column" item  xs={1} sm={2}>
+                    </Grid>
+                </Grid>
             </div>
-            
         );
     }
 }

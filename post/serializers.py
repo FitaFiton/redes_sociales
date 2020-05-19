@@ -103,7 +103,7 @@ class FriendSerializer(HyperlinkedModelSerializer):
 
     class Meta:
         model = Friend
-        fields = ['user_id', 'friend_id']
+        fields = ['id','user_id', 'friend_id']
         # title = models.CharField(max_length=30, blank=True)
         # content = models.TextField()
         # author = models.ForeignKey(User(), on_delete=models.CASCADE)

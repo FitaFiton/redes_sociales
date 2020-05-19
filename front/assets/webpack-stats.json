@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main.js","path":"C:\\Users\\Javier\\PycharmProjects\\redes_sociales\\front\\assets\\webpack_bundles\\main.js"}]},"error":"unknown-error","message":"[tsl] ERROR in C:\\Users\\Javier\\PycharmProjects\\redes_sociales\\front\\src\\Home.tsx(36,17)\r\n      TS2322: Type 'string | null' is not assignable to type 'string'.\r\n  Type 'null' is not assignable to type 'string'."}
+{"status":"done","chunks":{"main":[{"name":"main.js","path":"D:\\4_CURSO\\Redes Sociales\\WMW\\redes_sociales\\front\\assets\\webpack_bundles\\main.js"}]}}

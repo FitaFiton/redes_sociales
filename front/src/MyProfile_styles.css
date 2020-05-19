@@ -92,6 +92,9 @@
     justify-content: center;
     height: 100%;
     margin-top: 10px;
+    background-color: rgba(242, 244, 244, 0.5);
+    border-radius: 15px;
+    padding: 10px;
 }
 
 .image-profile-box{
@@ -107,6 +110,7 @@
     display: grid;
     text-align: left;
     margin-top: 10px;
+    margin-right: 10px;
     border-radius: 15px;
     text-indent: 4%;
 }
@@ -144,4 +148,13 @@
 .text-descriptions{
     color: grey;
     font-size: large;
+}
+
+.post-card{
+    float: inline-start;
+    width: 100%;
+}
+
+.follow-button-container{
+    margin: 10px;
 }

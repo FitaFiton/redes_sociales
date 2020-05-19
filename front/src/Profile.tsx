@@ -5,6 +5,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import PostCard from "./PostCardView"
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import {Image, Row} from 'react-bootstrap';
 let config = {
     headers: {
@@ -36,6 +37,8 @@ export class Profile extends Component {
             followers: 0,
         },
         posts: [],
+        friend: false,
+        friendship: [],
     };
 
     constructor(props: any) {
@@ -59,8 +62,22 @@ export class Profile extends Component {
                 console.log(this.state.posts);
             });
 
+            axios.get('http://127.0.0.1:8000/api/friend/?filterByFriend=' + this.state.user.id).then((response) =>{
+            console.log(response);
+
+            if(response.data[0]){
+                this.setState({
+                    friendship: response.data,
+                    friend: true,
+                });
+            }
+            
+            console.log(this.state.friendship);
         });
 
+        });
+
+        
     }
 
     componentDidMount(): void {
@@ -82,7 +99,54 @@ export class Profile extends Component {
                 });
             }
         });
+
+        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+                        posts_number: -1
+                    }, config).then(response => {
+                        console.log(response);
+        });
     };
+
+    onFollow(): void{
+
+        axios.post('http://127.0.0.1:8000/api/friend/', {
+                        user_id: localStorage.getItem("user_id"),
+                        friend_id: this.state.user.id,
+                    }).then(response => {
+                        console.log(response);
+                       });
+
+                       
+        this.setState({
+            friend: true
+        });
+                    
+
+        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+                        followers: 1
+                    }, config).then(response => {
+                        console.log(response);
+        });
+    }
+
+    onUnfollow (): void{
+        axios.delete('http://127.0.0.1:8000/api/friend/' + this.state.friendship[0]['id'] + '/', config).then(response => {
+            console.log(response);
+
+            if (response.status === 200) {
+                this.setState({
+                    friendship: [],
+                    friend: false
+                });
+            }
+        });
+        
+        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+                        followers: -1
+                    }, config).then(response => {
+                        console.log(response);
+        });
+    }
 
     render() {
 
@@ -129,6 +193,24 @@ export class Profile extends Component {
                                                     <i className="fas fa-palette"></i> : <i></i>
                                                 }
                                             </Row>
+                                        </div>
+                                        <div className="follow-button-container">
+                                        {   
+                                            (String(this.state.user.id)!=localStorage.getItem("user_id")) ?
+                                            
+                                                (this.state.friend) ?
+                                                <Button  variant="contained" color="secondary"
+                                                onClick={() => { this.onUnfollow()}}
+                                                >Unfollow</Button> 
+                                                    :
+                                                <Button  variant="contained" color="primary"
+                                                onClick={() => { this.onFollow()}}
+                                                >Follow</Button> 
+                                            :
+                                            <div></div>
+                                            
+                                        }
+                                            
                                         </div>
                                         <div className="info-profile-box">
                                             <br></br>

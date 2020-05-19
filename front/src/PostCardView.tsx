@@ -10,7 +10,7 @@ const PostCardContent = (props: any) => {
 
     posts = posts.map((post: any, i: number) => {
         return (
-            <Card style={{ width: '35rem' }} key={post.id} className="post-card-box">
+            <Card key={post.id} className="post-card-box">
                 <Card.Body className="text-right" key={post.id}>
                     <Card.Title >{post.title}</Card.Title>
                     
@@ -20,12 +20,26 @@ const PostCardContent = (props: any) => {
                     <br/>
                     <Card.Subtitle  className="text-muted post-date-text">{post.date}</Card.Subtitle>
 
-                    <Card.Link href="/profile">
-                        {
-                            (localStorage.setItem('last_profile_id_clicked', post.author.id))
-                        }
-                        {post.author.username}
-                    </Card.Link>
+                    
+                    
+                    {
+                        (post.author.username == localStorage.getItem("username")) ?
+                            
+                            <Card.Link href="/myprofile">{
+                                (localStorage.setItem('last_profile_id_clicked', post.author.id))
+                            }
+                            [propio]
+                            {post.author.username}
+                            </Card.Link>
+                            :
+                            <Card.Link href="/profile">{
+                                (localStorage.setItem('last_profile_id_clicked', post.author.id))
+                            }
+                            [otro] 
+                            {post.author.username}
+                            </Card.Link>
+                    }
+
                     {
                         (post.author.username == localStorage.getItem("username")) ?
                             <Card.Link href="#" onClick={() => { on_click_delete(post.id)}}><i className="fas fa-trash-alt fa-lg "></i></Card.Link>

@@ -102,7 +102,7 @@ export class Profile extends Component {
 
         axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
                         posts_number: -1
-                    }, config).then(response => {
+                    }).then(response => {
                         console.log(response);
         });
     };
@@ -114,17 +114,22 @@ export class Profile extends Component {
                         friend_id: this.state.user.id,
                     }).then(response => {
                         console.log(response);
+
+                        axios.get('http://127.0.0.1:8000/api/friend/?filterByFriend=' + this.state.user.id).then((response) =>{
+                            console.log(response);
+
+                            if(response.data[0]){
+                                this.setState({
+                                    friendship: response.data,
+                                    friend: true,
+                                });
+                            }
                        });
-
-                       
-        this.setState({
-            friend: true
-        });
                     
-
+        });
         axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
                         followers: 1
-                    }, config).then(response => {
+                    }).then(response => {
                         console.log(response);
         });
     }
@@ -143,7 +148,7 @@ export class Profile extends Component {
         
         axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
                         followers: -1
-                    }, config).then(response => {
+                    }).then(response => {
                         console.log(response);
         });
     }

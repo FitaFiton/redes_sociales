@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import {Image, Row} from 'react-bootstrap';
+import history from './history';
 let config = {
     headers: {
         "Content-Type": 'multipart/form-data'
@@ -174,7 +175,7 @@ export class Profile extends Component {
                             <div className="grid-info">
                                 <Grid item xs={12} sm={4}>
                                     <div className="image-profile-box">
-                                        <Image style={{ width: '10rem'}} src={this.state.user.profile.image} roundedCircle />
+                                        <Image style={{ width: '10rem', height: '10rem'}} src={this.state.user.profile.image} roundedCircle />
                                         <div className="user-icons">
                                             <Row xs={9} md={15}>
                                                 {
@@ -212,7 +213,9 @@ export class Profile extends Component {
                                                 onClick={() => { this.onFollow()}}
                                                 >Follow</Button> 
                                             :
-                                            <div></div>
+                                            <Button  variant="contained" color="default"
+                                                onClick={() => { history.push('/registerProfile');}}
+                                                >Edit Profile</Button>
                                             
                                         }
                                             

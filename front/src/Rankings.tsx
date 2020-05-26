@@ -34,13 +34,16 @@ export class Rankings extends Component {
         return( <div>
                     <div className="most-followers-box">
                         <div className="text-title">
-                        <b>Most Followers</b>
+                        <b>Most Followers </b>
+                        <i className="fas fa-award"></i>
                         </div>
+
                         <RankingCard data={this.state.users_most_followers}/>
                     </div>
                     <div className="most-posts-box">
                         <div className="text-title">
-                        <b>Most Posts</b>
+                        <b>Most Posts </b>
+                        <i className="fas fa-award"></i>
                         </div>
                         <RankingCard data={this.state.users_most_posts}/>
                     </div>

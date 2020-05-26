@@ -15,6 +15,7 @@ import history from './history';
 import { MyProfile } from './MyProfile';
 import { Home } from './Home';
 import {Profile} from "./Profile"
+import {FriendsList} from "./FriendsList"
 
 class App extends Component {
 
@@ -54,7 +55,7 @@ class App extends Component {
                     <Route path="/profile" component={Profile}/>
                     <Route path="/chat" component={Chat}/>
                     <Route path="/home" component={Home}/>
-                    <Route path="/" component={PostList}/>
+                    <Route path="/" component={FriendsList}/>
                 </Switch>
              </Router>
             </BrowserRouter>

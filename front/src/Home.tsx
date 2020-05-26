@@ -99,7 +99,7 @@ export class Home extends Component {
                 <Container className="main-container" >
             
                     <Row className="box-2-3" >
-                        <Col xs lg="2" className="box-2 rounded-border">1 of 3
+                        <Col xs lg="2" className="box-2 rounded-border">
                             <Rankings/>
                         </Col>
 
@@ -151,7 +151,7 @@ export class Home extends Component {
                
                         </Col>
 
-                        <Col xs lg="3" className="box-5 rounded-border">3 of 3
+                        <Col xs lg="3" className="box-5 rounded-border">
                         <div>
                         <NewFriends>
                         </NewFriends>

@@ -202,9 +202,9 @@ class FriendViewSet(ModelViewSet):
     #Post.objects.filter(title='hola')
 
     def get_queryset(self):
-        print(self.request.query_params.get('filterByUser', None))
         mode_friend_actual_user = self.request.query_params.get('filterByUser', None)
         mode_friend = self.request.query_params.get('filterByFriend', None)
+        mode_followers_actual_user = self.request.query_params.get('filterByFollowers', None)
         print(self.request.user)
         #print(mode_posts_profile_user)
         if mode_friend_actual_user:
@@ -212,6 +212,11 @@ class FriendViewSet(ModelViewSet):
             url_arguments = url.split("=")
             #return Friend.objects.raw('SELECT friend_id FROM post_friend WHERE user_id=3')
             return Friend.objects.filter(user_id=url_arguments[1])
+        elif mode_followers_actual_user:
+            url = self.request.build_absolute_uri()
+            url_arguments = url.split("=")
+            #return Friend.objects.raw('SELECT friend_id FROM post_friend WHERE user_id=3')
+            return Friend.objects.filter(friend_id=url_arguments[1])
         elif mode_friend:
             url = self.request.build_absolute_uri()
             url_arguments = url.split("=")

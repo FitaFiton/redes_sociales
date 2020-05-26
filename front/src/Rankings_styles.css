@@ -1,9 +1,7 @@
 
 
 .most-followers-box {
-    height: 15%;
     display: grid;
-
 }
 
 .text-title {
@@ -21,6 +19,5 @@
 
 .most-posts-box {
     margin-top: 20px;
-    height: 15%;
     display: grid;
 }

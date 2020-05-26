@@ -78,7 +78,7 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
                             <Navbar.Collapse id="responsive-navbar-nav" > 
                                 <Nav className="navbar-box-1">
                                     <Nav.Link href="/home">Home</Nav.Link>
-                                    <Nav.Link href="/">Posts</Nav.Link>
+                                    <Nav.Link href="/">Friends</Nav.Link>
                         
                                     <Nav.Link href="/Chat/">Chat</Nav.Link>
                                 </Nav>

@@ -20,3 +20,13 @@
     margin-top: 8px;
     width: 11rem;
 }
+
+.friend-title{
+    font-size: 1.5rem;
+    display: flex;
+}
+
+.friend-title-icon{
+    position: absolute;
+    right: 10%;
+}

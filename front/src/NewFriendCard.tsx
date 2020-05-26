@@ -29,7 +29,7 @@ const NewFriendContent = (props: any) => {
                         newFriend.profile ?
                             <div>
                                 <div className="newFriend-image">
-                                    <Image style={{ width: '5rem'}} src={newFriend.profile.image} roundedCircle />
+                                    <Image style={{ width: '5rem', height: '5rem'}} src={newFriend.profile.image} roundedCircle />
                                 </div>
                             <div className="newFriend-icons">
                             <Row xs={9} md={15}>

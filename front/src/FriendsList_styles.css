@@ -1,0 +1,17 @@
+.main-container{
+    max-width: 1150px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.box-Followers{
+    background-color: aquamarine;
+}
+
+.box-Followed{
+    background-color: green;
+}

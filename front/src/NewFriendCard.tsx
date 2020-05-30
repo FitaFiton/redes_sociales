@@ -67,14 +67,14 @@ const NewFriendContent = (props: any) => {
                     //Recopilar los datos
                     //Peticion
 
-                    axios.post('http://127.0.0.1:8000/api/friend/', {
+                    axios.post('http://127.0.0.1/api/friend/', {
                         user_id: localStorage.getItem("user_id"),
                         friend_id: newFriend.id,
                     }).then(response => {
                         console.log(response);
                        });
 
-                    axios.put('http://127.0.0.1:8000/api/user/'+ newFriend.id + '/', {
+                    axios.put('http://127.0.0.1/api/user/'+ newFriend.id + '/', {
                         followers: 1
                     }).then(response => {
                         console.log(response);

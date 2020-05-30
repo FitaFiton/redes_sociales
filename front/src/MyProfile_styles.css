@@ -105,7 +105,7 @@
 
 .info-profile-box{
     background-color: rgba(242, 244, 244, 0.5);
-    height: 50%;
+    height: 50%px;
     display: grid;
     text-align: left;
     margin-top: 6px;
@@ -116,7 +116,6 @@
 
 .header-profile-box{
     justify-content: center;
-    background-color: cyan;
     height: 20%;
     text-align: center;
     margin-top: 10px;

@@ -57,7 +57,7 @@ export class MyProfile extends Component {
         super(props);
         console.log("id del usuario a buscar");
         console.log(localStorage.getItem('last_profile_id_clicked'));
-        axios.get('http://127.0.0.1:8000/api/user/' + localStorage.getItem('last_profile_id_clicked') + '/', config).then((response) => {
+        axios.get('http://127.0.0.1/api/user/' + localStorage.getItem('last_profile_id_clicked') + '/', config).then((response) => {
             console.log(response);
             response.data.profile.image = 'http://127.0.0.1:8000' + response.data.profile.image
             this.setState({
@@ -65,7 +65,7 @@ export class MyProfile extends Component {
             });
             console.log("USER")
 
-            axios.get('http://127.0.0.1:8000/api/post/?filterByProfile=' + this.state.user.id).then((response) => {
+            axios.get('http://127.0.0.1/api/post/?filterByProfile=' + this.state.user.id).then((response) => {
                 console.log(response);
 
                 this.setState({
@@ -80,7 +80,7 @@ export class MyProfile extends Component {
 
     componentDidMount(): void {
         console.log("hola");
-        axios.get('http://127.0.0.1:8000/api/post/?filterByUser=1', config).then((response) => {
+        axios.get('http://127.0.0.1/api/post/?filterByUser=1', config).then((response) => {
             console.log(response);
             this.setState({
                 posts: response.data,
@@ -100,7 +100,7 @@ export class MyProfile extends Component {
 
     onDeletePost = (post_id: number) => {
 
-        axios.delete('http://127.0.0.1:8000/api/post/' + post_id + '/', config).then(response => {
+        axios.delete('http://127.0.0.1/api/post/' + post_id + '/', config).then(response => {
             console.log(response);
 
             if (response.status === 200) {

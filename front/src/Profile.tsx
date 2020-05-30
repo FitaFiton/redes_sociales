@@ -46,15 +46,15 @@ export class Profile extends Component {
         super(props);
         console.log("id del usuario a buscar");
         console.log(localStorage.getItem('last_profile_id_clicked'));
-        axios.get('http://127.0.0.1:8000/api/user/' + localStorage.getItem('last_profile_id_clicked') + '/', config).then((response) => {
+        axios.get('http://127.0.0.1/api/user/' + localStorage.getItem('last_profile_id_clicked') + '/', config).then((response) => {
             console.log(response);
-            response.data.profile.image = 'http://127.0.0.1:8000' + response.data.profile.image
+            response.data.profile.image = 'http://127.0.0.1' + response.data.profile.image
             this.setState({
                 user: response.data,
             });
             console.log("USER")
 
-            axios.get('http://127.0.0.1:8000/api/post/?filterByProfile=' + this.state.user.id).then((response) => {
+            axios.get('http://127.0.0.1/api/post/?filterByProfile=' + this.state.user.id).then((response) => {
                 console.log(response);
 
                 this.setState({
@@ -63,7 +63,7 @@ export class Profile extends Component {
                 console.log(this.state.posts);
             });
 
-            axios.get('http://127.0.0.1:8000/api/friend/?filterByFriend=' + this.state.user.id).then((response) =>{
+            axios.get('http://127.0.0.1/api/friend/?filterByFriend=' + this.state.user.id).then((response) =>{
             console.log(response);
 
             if(response.data[0]){
@@ -87,7 +87,7 @@ export class Profile extends Component {
 
     onDeletePost = (post_id: number) => {
 
-        axios.delete('http://127.0.0.1:8000/api/post/' + post_id + '/', config).then(response => {
+        axios.delete('http://127.0.0.1/api/post/' + post_id + '/', config).then(response => {
             console.log(response);
 
             if (response.status === 200) {
@@ -101,7 +101,7 @@ export class Profile extends Component {
             }
         });
 
-        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+        axios.put('http://127.0.0.1/api/user/' + localStorage.getItem('user_id') + '/', {
                         posts_number: -1
                     }).then(response => {
                         console.log(response);
@@ -110,13 +110,13 @@ export class Profile extends Component {
 
     onFollow(): void{
 
-        axios.post('http://127.0.0.1:8000/api/friend/', {
+        axios.post('http://127.0.0.1/api/friend/', {
                         user_id: localStorage.getItem("user_id"),
                         friend_id: this.state.user.id,
                     }).then(response => {
                         console.log(response);
 
-                        axios.get('http://127.0.0.1:8000/api/friend/?filterByFriend=' + this.state.user.id).then((response) =>{
+                        axios.get('http://127.0.0.1/api/friend/?filterByFriend=' + this.state.user.id).then((response) =>{
                             console.log(response);
 
                             if(response.data[0]){
@@ -128,7 +128,7 @@ export class Profile extends Component {
                        });
                     
         });
-        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+        axios.put('http://127.0.0.1/api/user/' + localStorage.getItem('user_id') + '/', {
                         followers: 1
                     }).then(response => {
                         console.log(response);
@@ -136,7 +136,7 @@ export class Profile extends Component {
     }
 
     onUnfollow (): void{
-        axios.delete('http://127.0.0.1:8000/api/friend/' + this.state.friendship[0]['id'] + '/', config).then(response => {
+        axios.delete('http://127.0.0.1/api/friend/' + this.state.friendship[0]['id'] + '/', config).then(response => {
             console.log(response);
 
             if (response.status === 200) {
@@ -147,7 +147,7 @@ export class Profile extends Component {
             }
         });
         
-        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+        axios.put('http://127.0.0.1/api/user/' + localStorage.getItem('user_id') + '/', {
                         followers: -1
                     }).then(response => {
                         console.log(response);

@@ -52,7 +52,7 @@ const FriendsContent = (props: any) => {
                             </div>
                             :
                             <div className="newFriend-image">
-                                <Image style={{ width: '5rem'}} src="http://127.0.0.1:8000/media/static/descarga.png" roundedCircle />
+                                <Image style={{ width: '5rem'}} src="http://127.0.0.1/media/static/descarga.png" roundedCircle />
                             </div>
                     }
 

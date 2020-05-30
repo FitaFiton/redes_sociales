@@ -28,7 +28,7 @@ export class PostList extends Component {
     };
     componentDidMount(): void {
         console.log("hola");
-        axios.get('http://127.0.0.1:8000/api/post/?filterByUser=1', config).then((response) => {
+        axios.get('http://127.0.0.1/api/post/?filterByUser=1', config).then((response) => {
             console.log(response);
             this.setState({
                 posts: response.data,
@@ -48,7 +48,7 @@ export class PostList extends Component {
 
     onDeletePost = (post_id: number) => {
 
-        axios.delete('http://127.0.0.1:8000/api/post/' + post_id + '/', config).then(response => {
+        axios.delete('http://127.0.0.1/api/post/' + post_id + '/', config).then(response => {
             console.log(response);
 
             if (response.status === 200) {
@@ -83,7 +83,7 @@ export class PostList extends Component {
                     //Recopilar los datos
                     //Peticion
 
-                    axios.post('http://127.0.0.1:8000/api/post/', {
+                    axios.post('http://127.0.0.1/api/post/', {
                         title: this.state['tf_title'],
                         content: this.state['tf_content'],
                     }, config).then(response => {

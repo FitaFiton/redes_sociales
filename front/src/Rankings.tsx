@@ -11,14 +11,14 @@ export class Rankings extends Component {
 
     constructor(props: any) {
         super(props);
-        axios.get('http://127.0.0.1:8000/api/user/?filterByMostFollowers=1').then((response) => {
+        axios.get('http://127.0.0.1/api/user/?filterByMostFollowers=1').then((response) => {
             console.log(response);
             this.setState({
                 users_most_followers: response.data.reverse(),
             });
             console.log("USER")
 
-        axios.get('http://127.0.0.1:8000/api/user/?filterByByMostPosts=1').then((response) => {
+        axios.get('http://127.0.0.1/api/user/?filterByByMostPosts=1').then((response) => {
                 console.log(response);
 
                 this.setState({

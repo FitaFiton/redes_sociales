@@ -6,7 +6,7 @@ module.exports = {
     mode: "development",
 
     output: {
-        path: require("path").resolve("./assets/webpack_bundles/"),
+        path: require("path").resolve("../static/assets/bundles/"),
         filename: "[name].js",
 
     },
@@ -19,7 +19,7 @@ module.exports = {
     plugins: [
         new BundleTracker({
             path: __dirname,
-            filename: "./assets/webpack-stats.json"
+            filename: "./webpack-stats.json"
         })
     ],
 

@@ -11,7 +11,8 @@
 }
 
 .text-users {
-    background-color: red;
+    background-color: rgba(192,255,238 , 0.7);
+    border-radius: 15px;
     margin-top: 2px;
     font-size: small;
     text-align: center;

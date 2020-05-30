@@ -45,8 +45,8 @@ class LoginForm extends Component<LoginFormProps, LoginFormState> {
         console.log(this.state)
         event.preventDefault();
         console.log("LOGIN");
-
-        axios.post('http://127.0.0.1:8000/auth/', this.state).then(r => {
+        console.log("hola");
+        axios.post('http://127.0.0.1/auth/', this.state).then(r => {
             console.log(r);
 
             localStorage.setItem('session', r.data.token);

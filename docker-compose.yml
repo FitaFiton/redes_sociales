@@ -1,0 +1,55 @@
+version: '3.7'
+services:
+  nginx:
+    restart: always
+    image: nginx:1.17
+    container_name: nginx
+    ports:
+      - "80:8000"
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./media:/usr/share/nginx/html/media/
+      - ./static:/static
+    depends_on:
+      - backend
+  backend:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./config/backend/Dockerfile
+    container_name: backend
+    working_dir: /app/
+    entrypoint:
+      - /entrypoint.sh
+    volumes:
+      - ./backend:/app
+      - ./media:/app/media
+      - ./static:/app/static
+      - ./static:/static
+      - ./front:/app/front
+    environment:
+      - DJANGO_SETTINGS_MODULE=django_redes_sociales.settings
+    expose:
+      - "8000"
+  frontend:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./config/frontend/Dockerfile
+    container_name: frontend
+    working_dir: /app/
+    entrypoint:
+      - /entrypoint.sh
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front:/app
+      - ./media:/media
+      - ./static:/static
+    environment:
+      - NODE_ENV=development
+  redis:
+    image: redis:6.0-rc
+

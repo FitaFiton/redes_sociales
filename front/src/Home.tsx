@@ -4,6 +4,7 @@ import axios from 'axios'
 import PostCard from "./PostCardView"
 import {NewFriends} from "./NewFriends"
 import {Rankings} from "./Rankings"
+import Hidden from '@material-ui/core/Hidden';
 import { Row, Container, Col, Card, Accordion, Form,Button, Image} from 'react-bootstrap';
 
 let config = {
@@ -23,12 +24,12 @@ export class Home extends Component {
 
     componentDidMount(): void {
         console.log(localStorage.getItem("session"));
-        axios.get('http://127.0.0.1:8000/api/post/', config).then((response) => {
+        axios.get('http://127.0.0.1/api/post/', config).then((response) => {
             console.log(response);
             let all_posts: any[] = [];
             let posts_filtered: any[] = [];
             all_posts = response.data;
-            axios.get('http://127.0.0.1:8000/api/friend/?filterByUser=' + localStorage.getItem("user_id")).then((response) => {
+            axios.get('http://127.0.0.1/api/friend/?filterByUser=' + localStorage.getItem("user_id")).then((response) => {
             console.log(response);
             let user_friends: any[] = [];
             let friends_to_filter = response.data;
@@ -67,7 +68,7 @@ export class Home extends Component {
 
     onDeletePost = (post_id: number) => {
 
-        axios.delete('http://127.0.0.1:8000/api/post/' + post_id + '/', config).then(response => {
+        axios.delete('http://127.0.0.1/api/post/' + post_id + '/', config).then(response => {
             console.log(response);
 
             if (response.status === 200) {
@@ -81,7 +82,7 @@ export class Home extends Component {
             }
         });
 
-        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+        axios.put('http://127.0.0.1/api/user/' + localStorage.getItem('user_id') + '/', {
                         posts_number: -1
                     }, config).then(response => {
                         console.log(response);
@@ -103,29 +104,28 @@ export class Home extends Component {
                             <Rankings/>
                         </Col>
 
-                        <Col className="box-3 rounded-border">
+                        <Col xs className="box-3 rounded-border">
 
                             {/* <div className = "post-list-atributes">
                                 <Tabla data={this.state.posts} on_click_delete={this.onDeletePost} number={1}> </Tabla>
                             </div> */}
                                 <Form className="post-imput">
-                                    <Col md={{ offset: 9}} >
                                         <Form.Group  className="post-title-imput" controlId="postTitle"  >
-                                            <Form.Control id="tf_title" className="post-imput-label" placeholder="Title"  onChange={this.onChangeTextField}/>
+                                            <Form.Control id="tf_title" className="post-imput-label"  placeholder="Title"  onChange={this.onChangeTextField}/>
                                         </Form.Group>
-                                    </Col>
                                     
                                     <Form.Group controlId="postContent">
                                         <Form.Control id="tf_content" className="post-imput-label" placeholder="Content" onChange={this.onChangeTextField}/>
                                     </Form.Group>
 
-                                    <Col md={{ span:12, offset: 9}} >
+
+                                        <div className="box-button-post">
                                         <Button  variant="secondary" onClick={() => {
                                             //Enviar los datos al servidor
                                             //Recopilar los datos
                                             //Peticion
 
-                                            axios.post('http://127.0.0.1:8000/api/post/', {
+                                            axios.post('http://127.0.0.1/api/post/', {
                                                 title: this.state['tf_title'],
                                                 content: this.state['tf_content'],
                                             }, config).then(response => {
@@ -134,15 +134,16 @@ export class Home extends Component {
                                                     posts: [...this.state.posts, response.data],
                                                     });
                                                 });
-                                            axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem('user_id') + '/', {
+                                            axios.put('http://127.0.0.1/api/user/' + localStorage.getItem('user_id') + '/', {
                                                     posts_number: 1
                                                 }, config).then(response2 => {
                                                     console.log(response2);
                                                    });
 
 
-                                        }}>Publicar</Button>
-                                    </Col>
+                                        }}>Post</Button>
+                                        </div>
+
                                     <PostCard data={this.state.posts} on_click_delete={this.onDeletePost} number={1}></PostCard>
                                 </Form>
                                 
@@ -150,13 +151,14 @@ export class Home extends Component {
 
                
                         </Col>
-
-                        <Col xs lg="3" className="box-5 rounded-border">
-                        <div>
-                        <NewFriends>
-                        </NewFriends>
-                        </div>
-                        </Col>
+                        <Hidden smDown>
+                            <Col lg="3" className="box-5 rounded-border">
+                                <div>
+                                    <NewFriends>
+                                    </NewFriends>
+                                </div>
+                            </Col>
+                         </Hidden>
                     </Row>
 
                 </Container>

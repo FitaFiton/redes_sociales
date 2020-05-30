@@ -20,13 +20,13 @@ export class NewFriends extends Component {
     };
     constructor(props: any) {
         super(props);
-        axios.get('http://127.0.0.1:8000/api/user/' + localStorage.getItem("user_id") + '/').then((response) => {
+        axios.get('http://127.0.0.1/api/user/' + localStorage.getItem("user_id") + '/').then((response) => {
             console.log(response);
             this.setState({
                 user_information: response.data.profile,
             });
         });
-        axios.get('http://127.0.0.1:8000/api/friend/?filterByUser=' + localStorage.getItem("user_id")).then((response) => {
+        axios.get('http://127.0.0.1/api/friend/?filterByUser=' + localStorage.getItem("user_id")).then((response) => {
             console.log(response);
             let user_friends: any[] = [];
             let friends_to_filter = response.data;
@@ -39,7 +39,7 @@ export class NewFriends extends Component {
             });
 
         });
-        axios.get('http://127.0.0.1:8000/api/user/').then((response) => {
+        axios.get('http://127.0.0.1/api/user/').then((response) => {
             console.log(response);
             this.setState({
                 users: response.data,
@@ -47,11 +47,14 @@ export class NewFriends extends Component {
 
             let pleasures_match = 0;
             let pleasures_array = [];
+            var hostname = /backend/gi;
             for (var val of this.state['users']){
                 if (val['profile'] === null){
                     pleasures_match = 0;
                 }
                 else{
+                    let image_url: string = val['profile']['image'];
+                    val['profile']['image'] = image_url.replace(hostname, "127.0.0.1");
                     if (val['profile']['music'] === this.state['user_information']['music']){
                         pleasures_match++;
                     }

@@ -13,7 +13,6 @@
 }
 
 .box-1{
-    background-color: cornsilk;
     margin-top: 20px;
 }
 
@@ -23,12 +22,11 @@
 }
 
 .box-2{
-    background-color: aquamarine;
-    
+    background-color: white;
 }
 
 .box-3{
-    background-color: gray;
+    background-color: rgba(242, 244, 244, 0.5);
     margin-left: 20px; 
     padding-top: 10px;
     max-width: 54%;
@@ -40,8 +38,15 @@
 }
 
 .box-5{
-    background-color: orange;
     margin-left: 20px; 
+}
+
+.box-button-post{
+    width: 98%;
+    height: 100%;
+    text-align: right;
+    margin-bottom: 10px;
+    margin-right: 5px;
 }
 
 .post-list-box{
@@ -66,12 +71,20 @@
 }
 
 .post-imput{
+    right:0%;
+    margin-right:0;
+    text-align: right;
     justify-content: right;
+    float: right;
     
 }
 
 .post-title-imput{
-    width: 24%;
+    background-color: pink;
+    text-align: right;
+    justify-items: right;
+    justify-content: right;
+    float: right;
 }
 
 .post-imput-label{

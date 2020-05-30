@@ -70,8 +70,8 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
         let {logged_in} = this.props;
 
         return(
-            <Navbar sticky="top" collapseOnSelect bg="light" expand="lg"  >
-                <Navbar.Brand href="/home" >{logged_in ? 'Hola, ' + localStorage.getItem('username') : 'Anónimo'}</Navbar.Brand>
+            <Navbar sticky="top" collapseOnSelect variant="dark" bg="dark" expand="lg"  >
+                <Navbar.Brand href="/home" >{'WMW'}</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                         {
                             logged_in ? 
@@ -83,20 +83,14 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
                                     <Nav.Link href="/Chat/">Chat</Nav.Link>
                                 </Nav>
                                 <Nav className=" navbar-box-2">
-                                    <SplitButton
-                                    variant="secondary" 
-                                    alignRight title={<i className="far fa-user fa-sg icon-profile profile-dropdown"></i>} 
-                                    id="dropdown-menu-align-right"
+                                    <Button
                                     onClick={() => {
                                         localStorage.setItem('last_profile_id_clicked', this.state.user_id);
                                         console.log(localStorage.getItem('last_profile_id_clicked'));
                                         history.push('/profile');
-                                    }}>
-
-                                        <NavDropdown.Item href="/">Settings</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                        <NavDropdown.Item  onClick={() => this.logout()}>Log out</NavDropdown.Item>
-                                    </SplitButton>
+                                        window.location.reload(false);
+                                    }}><i className="far fa-user fa-sg icon-profile profile-dropdown"></i>
+                                    </Button>
                                     <Nav.Link className="logout-icon" onClick={() => this.logout()}> <i className="fas fa-running fa-lg "></i> </Nav.Link>
                             
                                 </Nav>
@@ -104,11 +98,9 @@ export class NavBar extends Component <NavBarProps, NavBarState>{
                             :
                             <Navbar.Collapse id="responsive-navbar-nav" > 
                                 <Nav className="navbar-box-1">
-                                    <Nav.Link href="/home">Home</Nav.Link>
-                                    <Nav.Link href="/">About us</Nav.Link>
                                 </Nav>
                                 <Nav className=" navbar-box-2">
-                                    <NavDropdown alignRight title={<i className="far fa-user fa-sg icon-profile-gray profile-dropdown"></i>} id="dropdown-menu-align-right">
+                                    <NavDropdown alignRight title={<i className="far fa-user fa-sg profile-dropdown"></i>} id="dropdown-menu-align-right">
                                     
                                         <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                                         <NavDropdown.Item href="/register">Register</NavDropdown.Item>

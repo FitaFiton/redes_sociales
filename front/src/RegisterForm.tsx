@@ -90,10 +90,10 @@ class RegisterForm extends Component<RegisterFormProps, RegisterFormState> {
         console.log(this.state);
 
         if (this.confirmPassword === this.state.password){
-            axios.post('http://127.0.0.1:8000/api/user/', this.state).then(r => {
+            axios.post('http://127.0.0.1/api/user/', this.state).then(r => {
             console.log(r);
 
-            axios.post('http://127.0.0.1:8000/auth/', this.state).then(r => {
+            axios.post('http://127.0.0.1/auth/', this.state).then(r => {
                 console.log(r);
                 localStorage.setItem('session', r.data.token);
                 localStorage.setItem('user_id', r.data.user.id);

@@ -41,18 +41,22 @@
     background: #CDCDCD;
     display: flex;
     width: 50%;
-    height:75%;
+    height:600px;
     margin:auto;
     margin-top: 30px;
     margin-bottom: 30px;
     border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .register-box-background-pleasures {
     background: #CDCDCD;
     display: flex;
     width: 50%;
-    height:75%;
+    height:535px;
     margin:auto;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -64,11 +68,12 @@
     color: white;
     font-size: 20px;
     margin-top: 75px;
-    margin-left: 100px;
+    margin-left: 40px;
     text-align: justify;
+    margin-right: 40px;
     font-size: large;
     font-weight: bolder;
-    width: 73%;
+    width: 100%;
     height:60%;
 }
 

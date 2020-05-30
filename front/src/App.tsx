@@ -55,7 +55,12 @@ class App extends Component {
                     <Route path="/profile" component={Profile}/>
                     <Route path="/chat" component={Chat}/>
                     <Route path="/home" component={Home}/>
-                    <Route path="/" component={FriendsList}/>
+                    {
+                        (localStorage.getItem("user_id")!=null) ?
+                        <Route path="/" component={FriendsList}/>
+                        :
+                        <Route path="/" component={LoginForm}/>
+                    }
                 </Switch>
              </Router>
             </BrowserRouter>

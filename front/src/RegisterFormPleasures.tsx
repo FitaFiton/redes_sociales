@@ -102,7 +102,7 @@ class RegisterFormPleasures extends Component<RegisterFormPleasuresProps, Regist
         formData.append('image', this.state.image)
         console.log(formData);
         console.log(user_id);
-        axios.put('http://127.0.0.1:8000/api/user/' + localStorage.getItem("user_id") + '/', formData, config).then( r => {
+        axios.put('http://127.0.0.1/api/user/' + localStorage.getItem("user_id") + '/', formData, config).then( r => {
             console.log(r);
             history.push('/home');
             window.location.reload(false);

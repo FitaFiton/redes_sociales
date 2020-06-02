@@ -146,6 +146,7 @@
 .text-descriptions{
     color: grey;
     font-size: large;
+    overflow: auto;
 }
 
 .post-card{

@@ -14,7 +14,7 @@ export class Rankings extends Component {
         axios.get('http://127.0.0.1/api/user/?filterByMostFollowers=1').then((response) => {
             console.log(response);
             this.setState({
-                users_most_followers: response.data.reverse(),
+                users_most_followers: response.data,
             });
             console.log("USER")
 
@@ -22,7 +22,7 @@ export class Rankings extends Component {
                 console.log(response);
 
                 this.setState({
-                    users_most_posts: response.data.reverse(),
+                    users_most_posts: response.data,
                 });
             });
 

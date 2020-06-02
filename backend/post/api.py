@@ -27,9 +27,9 @@ class UserViewSet(ModelViewSet):
 
             return User.objects.filter(username=self.request.user)
         elif mode_followers:
-            return User.objects.all().order_by('followers')[:3]
+            return User.objects.all().order_by('-followers')[0:3]
         elif mode_posts:
-            return User.objects.all().order_by('posts_number')[:3]
+            return User.objects.all().order_by('-posts_number')[0:3]
         else:
             return User.objects.all()
 

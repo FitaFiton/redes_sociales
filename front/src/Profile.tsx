@@ -128,7 +128,7 @@ export class Profile extends Component {
                        });
                     
         });
-        axios.put('http://127.0.0.1/api/user/' + localStorage.getItem('user_id') + '/', {
+        axios.put('http://127.0.0.1/api/user/' + this.state.user.id + '/', {
                         followers: 1
                     }).then(response => {
                         console.log(response);
@@ -147,7 +147,7 @@ export class Profile extends Component {
             }
         });
         
-        axios.put('http://127.0.0.1/api/user/' + localStorage.getItem('user_id') + '/', {
+        axios.put('http://127.0.0.1/api/user/' + this.state.user.id + '/', {
                         followers: -1
                     }).then(response => {
                         console.log(response);
